@@ -1,0 +1,84 @@
+:root {
+  --primary-0: #212121;
+  --primary-1: #4d4d4d;
+  --primary-2: #757575;
+  --primary-3: #929292;
+  --primary-4: #b6b6b6;
+  --primary-5: #f3f3f3;
+  --parmary-6: #ffffff;
+  --background: #ffffff;
+  --background-cc: #ffffffcc;
+  --background-00: #ffffff00;
+}
+
+::-webkit-scrollbar-button {
+  background-color: var(--primary-4);
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  height: auto;
+  font-size: 14px;
+  line-height: 1.5715;
+  transition: all 0.1s ease;
+  font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+.icon {
+  display: inline-block;
+}
+
+.icon svg {
+  height: 1em;
+  line-height: 1em;
+  display: inline-block;
+}
+
+h1 {
+  color: var(--primary-0);
+}
+
+h2 {
+  color: var(--primary-1);
+}
+
+h3 {
+  color: var(--primary-2);
+}
+
+h4,
+h5,
+h6 {
+  color: var(--primary-3);
+}
+
+hr {
+  outline: none;
+  border: none;
+  width: 240px;
+  margin: 20px auto;
+  border-bottom: 1px solid var(--primary-4);
+}
+
+p {
+  color: var(--primary-3);
+  text-indent: 2em;
+}
+
+a {
+  color: var(--primary-2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--primary-3);
+}
+
+a:hover {
+  color: var(--primary-1);
+  border-color: var(--primary-2);
+}
+
+@media screen and (max-width: 600px) {
+  .mobile-hide {
+    display: none !important;
+  }
+}
