@@ -11,7 +11,17 @@
   --background-00: #ffffff00;
 }
 
-::-webkit-scrollbar-button {
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-5);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
   background-color: var(--primary-4);
 }
 
@@ -75,6 +85,20 @@ a {
 a:hover {
   color: var(--primary-1);
   border-color: var(--primary-2);
+}
+
+@keyframes preload {
+  from {
+    filter: drop-shadow(0 0 0 #000000);
+  }
+
+  to {
+    filter: drop-shadow(0 0 20px #00000000);
+  }
+}
+
+.preload {
+  animation: preload 1s infinite;
 }
 
 @media screen and (max-width: 600px) {
