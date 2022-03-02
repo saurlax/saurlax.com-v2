@@ -46,10 +46,10 @@
   align-items: center;
   position: fixed;
   top: 0;
-  margin: auto;
+  left: 0;
+  right: 0;
   padding: 12px 20px 32px 20px;
-  width: calc(100% - 40px);
-  max-width: 1000px;
+  z-index: 10;
   background-image: linear-gradient(var(--background), var(--background-cc), var(--background-00));
 }
 
