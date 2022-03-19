@@ -53,10 +53,14 @@
   background-image: linear-gradient(var(--background), var(--background-cc), var(--background-00));
 }
 
-.header-nav {
+.headerNav {
   display: inline-flex;
   align-items: center;
   gap: 16px;
+}
+
+.headerNav a {
+  border: none;
 }
 
 .logo {
@@ -65,21 +69,21 @@
   color: var(--primary-0);
 }
 
-.header-nav-item {
+.headerNavItem {
   border: none;
   color: var(--primary-2);
   cursor: pointer;
 }
 
-.header-nav-item:hover {
+.headerNavItem:hover {
   color: var(--primary-1);
 }
 
-.header-nav-item.icon {
+.headerNavItem.icon {
   font-size: 1.3rem;
 }
 
-.header-nav-item.active {
+.headerNavItem.active {
   color: var(--primary-1);
 }
 
@@ -91,6 +95,6 @@
 }
 
 .footer {
-  margin-top: 60px;
+  margin-top: 30px;
   color: var(--primary-4);
 }

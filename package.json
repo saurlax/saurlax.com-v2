@@ -1,28 +1,30 @@
 {
   "name": "saurlax",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.1",
   "scripts": {
-    "dev": "vite --host",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "@cloudbase/js-sdk": "^1.7.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "axios": "^0.26.0",
+    "mongoose": "^6.2.6",
+    "next": "12.1.0",
+    "next-plugin-svgr": "^1.1.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "react-markdown": "^8.0.0",
-    "react-router-dom": "^6.2.1",
-    "react-syntax-highlighter": "^15.4.5",
+    "react-syntax-highlighter": "^15.5.0",
     "rehype-katex": "^6.0.2",
     "rehype-raw": "^6.1.1",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^1.0.7",
-    "vite": "^2.8.0",
-    "vite-plugin-svgr": "^1.0.1"
+    "eslint": "8.10.0",
+    "eslint-config-next": "12.1.0"
   }
 }

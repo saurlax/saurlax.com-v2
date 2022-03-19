@@ -1,0 +1,19 @@
+.info {
+  display: inline-flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.views {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.overview {
+  margin-top: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

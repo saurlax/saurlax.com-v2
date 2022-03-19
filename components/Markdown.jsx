@@ -1,12 +1,12 @@
+import 'katex/dist/katex.min.css'
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { coldarkCold } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
 
-function Markdown(props) {
+export default function Markdown(props) {
   return (
     <ReactMarkdown
       components={{
@@ -14,12 +14,9 @@ function Markdown(props) {
           const match = /language-(\w+)/.exec(className || '')
           return !inline && match ? (
             <SyntaxHighlighter
-              children={String(children).replace(/\n$/, '')}
-              style={coldarkCold}
               language={match[1]}
               PreTag='div'
-              {...props}
-            />
+              {...props}>{String(children).replace(/\n$/, '')}</SyntaxHighlighter>
           ) : (
             <code className={className} {...props}>
               {children}
@@ -36,5 +33,3 @@ function Markdown(props) {
     </ReactMarkdown>
   );
 }
-
-export default Markdown;

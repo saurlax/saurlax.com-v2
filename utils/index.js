@@ -1,11 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import cloudbase from '@cloudbase/js-sdk/app';
-import '@cloudbase/js-sdk/auth';
-import '@cloudbase/js-sdk/functions';
-import '@cloudbase/js-sdk/database';
-
 Date.prototype.format = function (fmt) {
   var o = {
     'M+': this.getMonth() + 1,
@@ -38,8 +30,3 @@ Date.prototype.friendly = function () {
   if (this.getYear() == new Date().getYear()) return this.format('MM-dd');
   return this.format('yyyy-MM-dd');
 }
-
-window.app = cloudbase.init({ env: 'saurlax-8gusnwgo26d9fe8f', region: 'ap-guangzhou' });
-window.db = app.database();
-
-ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, document.getElementById('root'));

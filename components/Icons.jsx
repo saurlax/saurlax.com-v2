@@ -1,8 +1,8 @@
-import Icon from '@ant-design/icons';
-import { ReactComponent as saurlax } from '../assets/icons/saurlax.svg';
-import { ReactComponent as gitee } from '../assets/icons/gitee.svg';
-import { ReactComponent as bilibili } from '../assets/icons/bilibili.svg';
-import { ReactComponent as leaf } from '../assets/icons/leaf.svg';
+import Icon from '@ant-design/icons'
+import saurlax from '../public/assets/icons/saurlax.svg'
+import bilibili from '../public/assets/icons/bilibili.svg'
+import gitee from '../public/assets/icons/gitee.svg'
+import leaf from '../public/assets/icons/leaf.svg'
 
 function SaurlaxFilled(props) {
   return <Icon component={saurlax} {...props} />;
