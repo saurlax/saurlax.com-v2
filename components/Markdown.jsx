@@ -22,9 +22,6 @@ export default function Markdown(props) {
               {children}
             </code>
           )
-        },
-        table({ children, ...props }) {
-          return <div style={{ overflow: 'auto' }}><table {...props}>{children}</table></div>
         }
       }}
       remarkPlugins={[remarkMath, remarkGfm]}

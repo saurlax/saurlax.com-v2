@@ -52,7 +52,6 @@ body {
   margin: 0;
   color: var(--primary-3);
   background-color: var(--background);
-  height: auto;
   line-height: 1.5715;
   transition: all 0.1s ease;
   font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -115,10 +114,14 @@ img {
 }
 
 table {
+  width: calc(100% - 20px);
+  overflow: auto;
   margin: 8px auto;
   border-spacing: 0;
-  border-collapse: collapse;
+  table-layout: fixed;
   border: 1px solid #d0d0d0;
+  background-color: #ffffff22;
+
 }
 
 td {
@@ -128,6 +131,12 @@ td {
 th,
 td {
   padding: 4px 10px;
+  overflow: auto;
+}
+
+th:not(:last-child),
+td:not(:last-child) {
+  border-right: 1px solid #0000000f;
 }
 
 @media screen and (max-width: 600px) {
