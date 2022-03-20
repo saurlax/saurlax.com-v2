@@ -35,7 +35,7 @@ export async function getServerSideProps() {
   mongoose.connect(process.env.MONGODB_URI);
   return {
     props: {
-      blogList: (await BlogModel.find()).map(blog => {
+      blogList: (await BlogModel.find().sort({ datetime: -1 })).map(blog => {
         const { _id, datetime, title, content, views } = blog;
         return { _id: _id.toString(), datetime: datetime.getTime(), title, content, views }
       })

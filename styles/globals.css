@@ -53,7 +53,6 @@ body {
   color: var(--primary-3);
   background-color: var(--background);
   height: auto;
-  font-size: 14px;
   line-height: 1.5715;
   transition: all 0.1s ease;
   font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
