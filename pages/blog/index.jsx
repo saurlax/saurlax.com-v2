@@ -4,17 +4,23 @@ import Head from 'next/head'
 import Layout from '../../components/Layout'
 import BlogModel from '../../models/BlogModel'
 import Link from 'next/link'
-import { EyeFilled } from '@ant-design/icons'
+import { useState } from 'react'
 
 export default function Blog(props) {
+  const [word, setWord] = useState('');
+
   return (
     <>
       <Head>
         <title>Blog - Saurlax</title>
       </Head>
       <Layout>
-        <h1>Blog</h1>
+        <div className={style.titlebox}>
+          <h1>Blog</h1>
+          <input placeholder='搜索' className={style.search} value={word} onChange={e => { setWord(e.target.value) }} />
+        </div>
         {props.blogList?.map(blog => {
+          if (blog.title.indexOf(word) == -1 && blog.content.indexOf(word) == -1) return
           return (
             <div key={blog._id}>
               <Link href={`/blog/${blog._id}`}><a><h2 style={{ marginBottom: '0' }}>{blog.title}</h2></a></Link>

@@ -1,5 +1,4 @@
 import style from '../../styles/blog.module.css'
-import { EyeFilled } from '@ant-design/icons'
 import mongoose from 'mongoose'
 import Head from 'next/head'
 import Layout from '../../components/Layout'

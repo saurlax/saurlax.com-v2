@@ -13,3 +13,19 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.titlebox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search {
+  max-width: 26px;
+  transition: all 0.3s ease;
+}
+
+.search:hover,
+.search:focus {
+  max-width: 200px;
+}
