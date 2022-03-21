@@ -17,6 +17,10 @@ function Home() {
             <a href='https://space.bilibili.com/251608296' target='_blank' rel="noreferrer">哔哩哔哩</a>上找到我，或者加入我的
             <a href='https://jq.qq.com/?_wv=1027&k=1vDJz049' target='_blank' rel="noreferrer">QQ群</a>。
           </p>
+          <p>
+            联系、合作或是交换友链请通过QQ群向我私聊，或发送邮件到
+            <a href='mailto:saurlax@qq.com'>saurlax@qq.com</a>。
+          </p>
           <h2>友情链接</h2>
           <div className='home-links'>
             <a>空空如也</a>

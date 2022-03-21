@@ -22,7 +22,10 @@ export default function Markdown(props) {
               {children}
             </code>
           )
-        }
+        },
+        // table({ ...props }) {
+        //   return (<div style={{ overflow: 'auto', maxWidth: '100%' }}><table>{props.children}</table></div>)
+        // }
       }}
       remarkPlugins={[remarkMath, remarkGfm]}
       rehypePlugins={[rehypeKatex, rehypeRaw]}>

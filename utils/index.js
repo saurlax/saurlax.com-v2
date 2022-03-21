@@ -30,3 +30,8 @@ Date.prototype.friendly = function () {
   if (this.getYear() == new Date().getYear()) return this.format('MM-dd');
   return this.format('yyyy-MM-dd');
 }
+
+
+Number.prototype.friendly = function () {
+  return this > 10000 ? parseFloat((this / 10000).toFixed(1)) + 'w' : parseFloat(this.toFixed(1));
+}

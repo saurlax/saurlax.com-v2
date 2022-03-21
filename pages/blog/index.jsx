@@ -20,7 +20,7 @@ export default function Blog(props) {
               <Link href={`/blog/${blog._id}`}><a><h2 style={{ marginBottom: '0' }}>{blog.title}</h2></a></Link>
               <div className={style.info}>
                 {new Date(blog.datetime).friendly()}
-                <span className={style.views}><EyeFilled />{blog.views}</span>
+                <span className={style.views}><EyeFilled />{blog.views.friendly()}</span>
               </div>
               <p className={style.overview}>{blog.content}</p>
             </div>
