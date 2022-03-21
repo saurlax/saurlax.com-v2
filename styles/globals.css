@@ -48,6 +48,10 @@ body.dark {
   transition: all 0.1s linear;
 }
 
+*:not(code, pre) {
+  word-break: break-all;
+}
+
 body {
   margin: 0;
   color: var(--primary-3);
