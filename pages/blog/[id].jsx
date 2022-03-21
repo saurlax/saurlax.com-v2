@@ -16,7 +16,7 @@ export default function BlogDetail(props) {
         <h1>{props.blog.title}</h1>
         <div className={style.info}>
           {new Date(props.blog.datetime).friendly()}
-          <span className={style.views}><EyeFilled />{props.blog.views.friendly()}</span>
+          <span>{props.blog.views.friendly()}次浏览</span>
         </div>
         <Markdown>{props.blog.content}</Markdown>
       </Layout>
