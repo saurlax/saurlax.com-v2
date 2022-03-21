@@ -22,6 +22,7 @@ export default function Layout(props) {
         <span className={style.headerNav}>
           <Link className={style.headerNavItem} href='/blog'>Blog</Link>
           <Link className={style.headerNavItem} href='/project'>Project</Link>
+          <a href='https://www.aliyundrive.com/s/n33jJnighaz'>Netdisk</a>
           <a className={`${style.headerNavItem} ${style.icon} mobile-hide`} href='https://github.com/saurlax' target='_blank' rel='noreferrer'><GithubOutlined /></a>
           <a className={`${style.headerNavItem} ${style.icon} mobile-hide`} href='https://gitee.com/saurlax' target='_blank' rel='noreferrer'><GiteeFilled /></a>
           <a className={`${style.headerNavItem} ${style.icon} mobile-hide`} href='https://bilibili.com/' target='_blank' rel='noreferrer'><BilibiliFilled /></a>
