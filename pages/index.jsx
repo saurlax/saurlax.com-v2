@@ -1,34 +1,25 @@
 import Layout from '../components/Layout'
 import Head from 'next/head'
+import mongoose from 'mongoose'
+import BlogModel from '../models/BlogModel'
+import Markdown from '../components/Markdown'
 
-function Home() {
+export default function Home(props) {
   return (
     <>
       <Head>
         <title>Saurlax</title>
       </Head>
       <Layout>
-        <div>
-          <h1>Saurlax</h1>
-          <p>嗨，欢迎来到我的个人站点(￣▽￣)~*！我是一名来自深圳的高中生，目前正在学习全栈的相关知识。</p>
-          <p>你可以在
-            <a href='https://github.com/saurlax' target='_blank' rel="noreferrer">GitHub</a>，
-            <a href='https://gitee.com/saurlax' target='_blank' rel="noreferrer">码云</a>或者
-            <a href='https://space.bilibili.com/251608296' target='_blank' rel="noreferrer">哔哩哔哩</a>上找到我，或者加入我的
-            <a href='https://jq.qq.com/?_wv=1027&k=1vDJz049' target='_blank' rel="noreferrer">QQ群</a>。
-          </p>
-          <p>
-            联系、合作或是交换友链请通过QQ群向我私聊，或发送邮件到
-            <a href='mailto:saurlax@qq.com'>saurlax@qq.com</a>。
-          </p>
-          <h2>友情链接</h2>
-          <div className='home-links'>
-            <a>空空如也</a>
-          </div>
-        </div>
+        <Markdown>{props.content}</Markdown>
       </Layout>
     </>
   );
 }
 
-export default Home;
+export async function getServerSideProps() {
+  mongoose.connect(process.env.MONGODB_URI);
+  const { _id, content, views } = await BlogModel.findOne({ _id: '000000000000000000000000' });
+  await BlogModel.updateOne({ _id: _id.toString() }, { views: views + 1 });
+  return { props: { content } };
+}
