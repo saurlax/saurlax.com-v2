@@ -141,7 +141,7 @@ td::-webkit-scrollbar {
 
 th:not(:last-child),
 td:not(:last-child) {
-  border-right: 1px solid #0000000f;
+  border-right: 1px solid #f0f0f0;
 }
 
 ul {
@@ -177,7 +177,8 @@ textarea {
 }
 
 pre {
-  opacity: 75%;
+  opacity: 90%;
+  background-color: inherit;
 }
 
 button {

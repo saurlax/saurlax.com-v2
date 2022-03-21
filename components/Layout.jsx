@@ -2,20 +2,21 @@ import style from '../styles/layout.module.css'
 import { BilibiliFilled, GiteeFilled, LeafFilled, SaurlaxFilled } from "./Icons"
 import { GithubOutlined, SlackCircleFilled } from '@ant-design/icons'
 import Link from 'next/link'
+import { useEffect } from 'react'
+
+const leaves = new Array(parseInt(Math.random() * 10 + 6)).fill(null).map(() => {
+  return (<LeafFilled key={Math.random()} style={{
+    fontSize: `${Math.random() + 0.6}rem`,
+    top: `-${Math.random() * 50}%`,
+    left: `calc(${Math.random() * 100}% - 100px)`,
+    animationDuration: `${Math.random() * 10 + 6}s`
+  }} />)
+});
 
 export default function Layout(props) {
   return (
     <div className={style.layout}>
-      <div className={style.background}>
-        {new Array(parseInt(Math.random() * 10 + 6)).fill(null).map(() => {
-          return <LeafFilled key={Math.random()} style={{
-            fontSize: `${Math.random() + 0.6}rem`,
-            top: `-${Math.random() * 50}%`,
-            left: `calc(${Math.random() * 100}% - 100px)`,
-            animationDuration: `${Math.random() * 10 + 6}s`
-          }} />;
-        })}
-      </div>
+      <div className={style.background}>{leaves}</div>
       <div className={style.header}>
         <Link href='/'><a className={style.logo}><SaurlaxFilled /></a></Link>
         <span className={style.headerNav}>
@@ -37,5 +38,5 @@ export default function Layout(props) {
         </div>
       </div>
     </div>
-  );
+  )
 }
