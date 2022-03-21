@@ -1,0 +1,25 @@
+import mongoose from 'mongoose'
+import Head from 'next/head'
+import Layout from '../../components/Layout'
+import Markdown from '../../components/Markdown'
+import BlogModel from '../../models/BlogModel'
+
+export default function BlogDetail(props) {
+  return (
+    <>
+      <Head>
+        <title>{`${props.blog.title} - Saurlax`}</title>
+      </Head>
+      <Layout>
+        <Markdown>{props.blog.content}</Markdown>
+      </Layout>
+    </>
+  )
+}
+
+export async function getServerSideProps(context) {
+  mongoose.connect(process.env.MONGODB_URI);
+  const { _id, datetime, title, content, views } = await BlogModel.findOne({ _id: '000000000000000a' + context.query.id });
+  await BlogModel.updateOne({ _id: _id.toString() }, { views: views + 1 });
+  return { props: { blog: { _id: _id.toString(), datetime: datetime.getTime(), title, content, views } } };
+}
