@@ -21,7 +21,7 @@ export default function Blog(props) {
         </div>
         {props.blogList?.map(blog => {
           if (blog.title.indexOf(word) == -1 && blog.content.indexOf(word) == -1) return
-          if (Number.parseInt(blog._id) < 1000) return
+          if (blog._id.slice(0, 1) == '0') return
           return (
             <div key={blog._id}>
               <Link href={`/blog/${blog._id}`}><a><h2 style={{ marginBottom: '0' }}>{blog.title}</h2></a></Link>
