@@ -1,16 +1,19 @@
 Date.prototype.format = function (fmt) {
-  var o = {
-    'M+': this.getMonth() + 1,
-    'd+': this.getDate(),
-    'H+': this.getHours(),
-    'm+': this.getMinutes(),
-    's+': this.getSeconds(),
-    'q+': Math.floor((this.getMonth() + 3) / 3),
-    'S': this.getMilliseconds()
+  let ret;
+  const opt = {
+    "Y+": this.getFullYear().toString(),
+    "m+": (this.getMonth() + 1).toString(),
+    "d+": this.getDate().toString(),
+    "H+": this.getHours().toString(),
+    "M+": this.getMinutes().toString(),
+    "S+": this.getSeconds().toString()
   };
-  if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
-  for (var k in o)
-    if (new RegExp('(' + k + ')').test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)));
+  for (let k in opt) {
+    ret = new RegExp("(" + k + ")").exec(fmt);
+    if (ret) {
+      fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
+    };
+  };
   return fmt;
 }
 
@@ -31,7 +34,27 @@ Date.prototype.friendly = function () {
   return this.format('yyyy-MM-dd');
 }
 
-
 Number.prototype.friendly = function () {
   return this > 10000 ? parseFloat((this / 10000).toFixed(1)) + 'w' : parseFloat(this.toFixed(1));
 }
+
+const _log = console.log;
+const _info = console.info;
+const _warn = console.warn;
+const _error = console.error;
+
+console.log = function (...data) {
+  _log(`[${new Date().format("HH:MM:SS")} LOG]`, ...data);
+}
+console.info = function (...data) {
+  _info("\x1B[36m", `[${new Date().format("HH:MM:SS")} INFO]`, ...data, "\x1B[39m");
+}
+console.warn = function (...data) {
+  _warn("\x1B[33m", `[${new Date().format("HH:MM:SS")} WARN]`, ...data, "\x1B[39m");
+}
+console.error = function (...data) {
+  _error("\x1B[31m", `[${new Date().format("HH:MM:SS")} ERROR]`, ...data, "\x1B[39m");
+}
+
+const utils = {};
+export default utils;
