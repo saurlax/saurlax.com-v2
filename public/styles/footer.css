@@ -1,0 +1,5 @@
+footer {
+  margin: auto;
+  max-width: var(--max-width);
+  padding: var(--padding);
+}

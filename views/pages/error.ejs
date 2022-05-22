@@ -1,0 +1,11 @@
+<%- include('../layouts/header', {title: error }) %>
+  <link rel="stylesheet" href="/styles/error.css">
+  <div class="padding">
+    <h1>
+      <%= error %>
+    </h1>
+    <div>
+      <%= message %>
+    </div>
+  </div>
+  <%- include('../layouts/footer') %>

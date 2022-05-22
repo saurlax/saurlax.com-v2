@@ -1,6 +1,5 @@
 {
   "name": "saurlax",
-  "type": "module",
   "version": "0.0.1",
   "description": "",
   "main": "main.js",
@@ -12,8 +11,10 @@
     "url": "https://gitee.com/saurlax/saurlax.git"
   },
   "dependencies": {
+    "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
+    "moment": "^2.29.3",
     "mongoose": "^6.3.3",
     "showdown": "^1.9.1",
     "showdown-katex": "^0.8.0"
