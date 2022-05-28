@@ -1,68 +1,100 @@
 :root {
-  --color-primary: teal;
-  --color-success: #00b578;
-  --color-warning: #ff8f1f;
-  --color-danger: #ff3141;
+  --color-primary: #212121;
+  --color-primary-1: #212121dd;
+  --color-primary-2: #212121bb;
+  --color-primary-3: #21212199;
+  --color-primary-4: #21212177;
+  --color-primary-5: #21212155;
+  --color-primary-6: #21212133;
+  --color-primary-7: #21212111;
   --color-white: #ffffff;
-  --color-weak: #999999;
-  --color-light: #cccccc;
-  --border-color: #eeeeee;
-  --font-size-main: 14px;
+  --color-light: #dddddd;
+  --color-lightgray: #bbbbbb;
+  --color-gray: #999999;
+  --color-darkgray: #777777;
+  --color-dark: #555555;
   --color-text: #212121;
-  --max-width: 1000px;
-  --padding: 12px;
-  --font-family: "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
+  --color-border: #d9d9d9;
 
-* {
+  --header-height: 52px;
+
   -webkit-tap-highlight-color: transparent;
 }
 
 ::selection {
   color: var(--color-white);
-  background-color: var(--color-weak);
+  background-color: var(--color-primary);
+}
+
+* {
+  font-size: 14px;
+  color: var(--color-text);
+  transition: all 0.3s ease;
+  font-family: "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 body {
   margin: 0;
-  color: var(--color-text);
-  font-size: var(--font-size-main);
-  font-family: var(--font-family);
+}
+
+@media screen and (max-width:600px) {
+  .mobile-hide {
+    display: none;
+  }
+}
+
+.width-limit {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+}
+
+.space {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.margin {
+  margin: 20px;
 }
 
 a {
-  color: var(--color-weak);
-  cursor: pointer;
+  color: var(--color-primary);
+  text-decoration: none;
 }
 
 a:hover {
-  color: var(--color-text);
-}
-
-hr {
-  border: none;
-  outline: none;
-  border-top: 1px solid var(--color-light);
+  color: var(--color-primary-1);
 }
 
 button {
-  padding: 6px 8px;
-  border: 1px solid var(--color-light);
+  font-size: inherit;
+  outline: 0;
+  line-height: 1.5715;
+  padding: 4px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
   background-color: var(--color-white);
   cursor: pointer;
 }
 
-button:hover {
-  border-color: var(--color-weak);
-  background-color: var(--color-light);
+button.primary {
+  color: var(--color-white);
+  border-color: transparent;
+  background-color: var(--color-primary);
+  text-shadow: 0 -1px 0 #0000001f;
 }
 
-.padding {
-  padding: var(--padding);
+button:hover,
+button:focus {
+  color: var(--color-primary-1);
+  border-color: var(--color-primary-1);
 }
 
-@media screen and (max-width: 600px) {
-  .mobile-hide {
-    display: none;
-  }
+button.primary:hover,
+button.primary:focus {
+  color: var(--color-white);
+  border-color: transparent;
+  background-color: var(--color-primary-1);
 }

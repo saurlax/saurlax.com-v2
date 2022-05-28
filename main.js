@@ -1,17 +1,20 @@
-const express = require('express');
-const fs = require('fs');
-const router = require('./routers/router');
+const koa = require('koa');
+const serve = require('koa-static');
+const art = require('koa-art-template');
 require('dotenv').config();
 
-const app = express();
-app.set('view engine', 'ejs');
-app.set('views', 'views');
-app.use(router);
-app.use(express.static('public'));
-app.get('*', (req, res, next) => {
-  res.statusCode = 404;
-  res.render('pages/error', { error: 404, message: 'Page not found' });
+const app = new koa();
+art(app, {
+  root: 'views',
+  extname: '.art',
+  debug: process.env.NODE_ENV != 'production'
 })
+
+const pageRouter = require('./routers/pageRouter');
+const apiRouter = require('./routers/apiRouter');
+app.use(pageRouter.routes()).use(pageRouter.allowedMethods());
+app.use(apiRouter.routes()).use(apiRouter.allowedMethods());
+app.use(serve('public'));
 
 app.listen(process.env.PORT);
 console.log(`Server is listening on port ${process.env.PORT}`);
