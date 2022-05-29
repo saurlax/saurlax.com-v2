@@ -7,7 +7,13 @@
   <div>欢迎来到Saurlax的个人网站</div>
   <div>/// 施工中 ///</div>
   <div>2022.5.28 添加了月份主题色 好看吧~</div>
-  <button>仿antd的按钮</button>
-  <button class="primary" onclick="changeMouth()">点击切换到下一月</button>
+  <div class="space wrap">
+    <button>仿antd的按钮</button>
+    <button class="dashed">dashed</button>
+    <button class="danger">danger</button>
+    <button class="danger dashed">danger + dashed</button>
+    <button class="primary">primary</button>
+    <button class="danger primary">danger + primary</button>
+  </div>
 </div>
 {{/block}}

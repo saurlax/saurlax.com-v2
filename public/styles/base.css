@@ -1,4 +1,5 @@
 :root {
+  --color-primary-deep: #000000;
   --color-primary: #212121;
   --color-primary-1: #212121dd;
   --color-primary-2: #212121bb;
@@ -7,6 +8,11 @@
   --color-primary-5: #21212155;
   --color-primary-6: #21212133;
   --color-primary-7: #21212111;
+  --color-primary-hover: var(--color-primary-1);
+  --color-primary-active: var(--color-primary-deep);
+  --color-danger: #ff4d4f;
+  --color-danger-hover: #ff7875;
+  --color-danger-active: #d9363e;
   --color-white: #ffffff;
   --color-light: #dddddd;
   --color-lightgray: #bbbbbb;
@@ -55,6 +61,10 @@ body {
   gap: 8px;
 }
 
+.space.wrap {
+  flex-wrap: wrap;
+}
+
 .margin {
   margin: 20px;
 }
@@ -65,7 +75,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-primary-1);
+  color: var(--color-primary-hover);
 }
 
 button {
@@ -77,6 +87,38 @@ button {
   border-radius: 2px;
   background-color: var(--color-white);
   cursor: pointer;
+  user-select: none;
+}
+
+button:hover,
+button:focus {
+  color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+button:active {
+  color: var(--color-primary-active);
+  border-color: var(--color-primary-active);
+}
+
+button.dashed {
+  border-style: dashed;
+}
+
+button.danger {
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+button.danger:hover,
+button.danger:focus {
+  color: var(--color-danger-hover);
+  border-color: var(--color-danger-hover);
+}
+
+button.danger:active {
+  color: var(--color-danger-active);
+  border-color: var(--color-danger-active);
 }
 
 button.primary {
@@ -86,15 +128,26 @@ button.primary {
   text-shadow: 0 -1px 0 #0000001f;
 }
 
-button:hover,
-button:focus {
-  color: var(--color-primary-1);
-  border-color: var(--color-primary-1);
-}
-
 button.primary:hover,
 button.primary:focus {
   color: var(--color-white);
   border-color: transparent;
-  background-color: var(--color-primary-1);
+  background-color: var(--color-primary-hover);
+}
+
+button.primary:active {
+  background-color: var(--color-primary-active);
+}
+
+button.primary.danger {
+  background-color: var(--color-danger);
+}
+
+button.primary.danger:hover,
+button.primary.danger:focus {
+  background-color: var(--color-danger-hover);
+}
+
+button.primary.danger:active {
+  background-color: var(--color-danger-active);
 }

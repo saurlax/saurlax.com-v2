@@ -1,43 +1,46 @@
-let mouth = new Date().getMonth();
-const colors = [
-  '#bc7654', '#b692be', '#b5e3d8', '#df4952',
-  '#7bb467', '#fdd758', '#e4afb5', '#f18137',
-  '#5f6fad', '#99b3d4', '#c04a64', '#118091'
+const root = document.documentElement;
+
+const themes = [
+  ['#bc7654', '𝓬𝓪𝓻𝓪𝓶𝓮𝓵'],
+  ['#b692be', '𝓼𝓱𝓮𝓮𝓻 𝓵𝓲𝓵𝓪𝓬'],
+  ['#b5e3d8', '𝓯𝓪𝓲𝓻 𝓪𝓺𝓾𝓪'],
+  ['#df4952', '𝓬𝓪𝔂𝓮𝓷𝓷𝓮'],
+  ['#7bb467', '𝓫𝓾𝓭 𝓰𝓻𝓮𝓮𝓷'],
+  ['#fdd758', '𝓪𝓼𝓹𝓮𝓷 𝓰𝓸𝓵𝓭'],
+  ['#e4afb5', '𝓬𝓸𝓻𝓪𝓵 𝓫𝓵𝓾𝓼𝓱'],
+  ['#f18137', '𝓼𝓾𝓷 𝓸𝓻𝓪𝓷𝓰𝓮'],
+  ['#5f6fad', '𝓫𝓪𝓳𝓪 𝓫𝓵𝓾𝓮'],
+  ['#99b3d4', '𝓬𝓮𝓻𝓾𝓵𝓮𝓪𝓷'],
+  ['#c04a64', '𝓬𝓵𝓪𝓻𝓮𝓽 𝓻𝓮𝓭'],
+  ['#118091', '𝓹𝓪𝓰𝓸𝓭𝓪 𝓫𝓵𝓾𝓮']
 ];
-const mouths = [
-  '𝓬𝓪𝓻𝓪𝓶𝓮𝓵', '𝓼𝓱𝓮𝓮𝓻 𝓵𝓲𝓵𝓪𝓬', '𝓯𝓪𝓲𝓻 𝓪𝓺𝓾𝓪', '𝓬𝓪𝔂𝓮𝓷𝓷𝓮',
-  '𝓫𝓾𝓭 𝓰𝓻𝓮𝓮𝓷', '𝓪𝓼𝓹𝓮𝓷 𝓰𝓸𝓵𝓭', '𝓬𝓸𝓻𝓪𝓵 𝓫𝓵𝓾𝓼𝓱', '𝓼𝓾𝓷 𝓸𝓻𝓪𝓷𝓰𝓮',
-  '𝓫𝓪𝓳𝓪 𝓫𝓵𝓾𝓮', '𝓬𝓮𝓻𝓾𝓵𝓮𝓪𝓷', '𝓬𝓵𝓪𝓻𝓮𝓽 𝓻𝓮𝓭', '𝓹𝓪𝓰𝓸𝓭𝓪 𝓫𝓵𝓾𝓮'
-];
-const primaryColor = colors[mouth];
+
+function prefix(string, length) {
+  return (Array(length).join('0') + string).slice(-length);
+}
+
+function colorChanger(color, degree) {
+  let rgb = [];
+  for (let i = 0; i < 3; i++) {
+    rgb[i] = prefix((Number.parseInt(color.slice(i * 2 + 1, i * 2 + 3), 16) * degree).toString(16).split('.')[0], 2);
+  }
+  return `#${rgb.join('')}`;
+}
+
+const gradient = ['', 'dd', 'bb', '99', '77', '55', '33', '11'];
+function changePrimaryColor(color) {
+  root.style.setProperty('--color-primary-deep', colorChanger(color, 0.875));
+  gradient.forEach((g, i) => {
+    root.style.setProperty(`--color-primary${i == 0 ? '' : `-${i}`}`, `${color}${g}`);
+  })
+}
+
+function changePrimaryTheme(i) {
+  changePrimaryColor(themes[i][0]);
+  document.getElementById('theme').innerText = themes[i][1];
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
-  const body = document.body;
-  body.style.setProperty('--color-primary', primaryColor);
-  body.style.setProperty('--color-primary-1', `${primaryColor}dd`);
-  body.style.setProperty('--color-primary-2', `${primaryColor}bb`);
-  body.style.setProperty('--color-primary-3', `${primaryColor}99`);
-  body.style.setProperty('--color-primary-4', `${primaryColor}77`);
-  body.style.setProperty('--color-primary-5', `${primaryColor}55`);
-  body.style.setProperty('--color-primary-6', `${primaryColor}33`);
-  body.style.setProperty('--color-primary-7', `${primaryColor}11`);
-  const mouthSup = document.getElementById('mouth');
-  mouthSup.innerText = mouths[mouth];
+  changePrimaryTheme(new Date().getMonth());
 })
-
-// 临时测试方法
-function changeMouth() {
-  mouth = mouth == 11 ? 0 : mouth + 1;
-  const primaryColor = colors[mouth];
-  const body = document.body;
-  body.style.setProperty('--color-primary', primaryColor);
-  body.style.setProperty('--color-primary-1', `${primaryColor}dd`);
-  body.style.setProperty('--color-primary-2', `${primaryColor}bb`);
-  body.style.setProperty('--color-primary-3', `${primaryColor}99`);
-  body.style.setProperty('--color-primary-4', `${primaryColor}77`);
-  body.style.setProperty('--color-primary-5', `${primaryColor}55`);
-  body.style.setProperty('--color-primary-6', `${primaryColor}33`);
-  body.style.setProperty('--color-primary-7', `${primaryColor}11`);
-  const mouthSup = document.getElementById('mouth');
-  mouthSup.innerText = mouths[mouth];
-}
