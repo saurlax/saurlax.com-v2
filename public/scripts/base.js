@@ -12,7 +12,8 @@ const themes = [
   ['#5f6fad', '𝓫𝓪𝓳𝓪 𝓫𝓵𝓾𝓮'],
   ['#99b3d4', '𝓬𝓮𝓻𝓾𝓵𝓮𝓪𝓷'],
   ['#c04a64', '𝓬𝓵𝓪𝓻𝓮𝓽 𝓻𝓮𝓭'],
-  ['#118091', '𝓹𝓪𝓰𝓸𝓭𝓪 𝓫𝓵𝓾𝓮']
+  ['#118091', '𝓹𝓪𝓰𝓸𝓭𝓪 𝓫𝓵𝓾𝓮'],
+  ['#212121', '𝓭𝓪𝓻𝓴']
 ];
 
 function prefix(string, length) {
@@ -44,3 +45,9 @@ function changePrimaryTheme(i) {
 document.addEventListener('DOMContentLoaded', () => {
   changePrimaryTheme(new Date().getMonth());
 })
+
+let testi = new Date().getMonth();
+function testChangeMouth() {
+  testi = testi == themes.length - 1 ? 0 : testi + 1;
+  changePrimaryTheme(testi);
+}

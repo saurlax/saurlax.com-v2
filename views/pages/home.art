@@ -3,17 +3,33 @@
 {{block 'title'}}首页{{/block}}
 
 {{block 'content'}}
-<div>
+<div class="padding">
   <div>欢迎来到Saurlax的个人网站</div>
   <div>/// 施工中 ///</div>
-  <div>2022.5.28 添加了月份主题色 好看吧~</div>
-  <div class="space wrap">
-    <button>仿antd的按钮</button>
-    <button class="dashed">dashed</button>
-    <button class="danger">danger</button>
-    <button class="danger dashed">danger + dashed</button>
-    <button class="primary">primary</button>
-    <button class="danger primary">danger + primary</button>
+  <ul>
+    <li>5.28 添加了月份主题色 好看吧~</li>
+    <li>5.29 more buttons~~~</li>
+  </ul>
+  <div class="space wrap block">
+    <div class="space wrap block">
+      <button>仿antd的按钮</button>
+      <button class="dashed">dashed</button>
+      <button class="danger">danger</button>
+      <button class="danger dashed">danger + dashed</button>
+      <button class="primary" onclick="testChangeMouth()">切换主题</button>
+      <button class="danger primary">danger + primary</button>
+      <button class="primary block">block 占满整行</button>
+    </div>
+    <div class="space wrap block">
+      <input>
+      <textarea></textarea>
+      <input class="block" placeholder="block 占满整行">
+      <textarea class="block">block 占满整行</textarea>
+    </div>
+    <div class="space wrap block">
+      <input type="checkbox"><input type="checkbox"><input type="checkbox">
+      <input type="radio"><input type="radio"><input type="radio">
+    </div>
   </div>
 </div>
 {{/block}}
