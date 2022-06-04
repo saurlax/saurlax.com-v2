@@ -7,7 +7,7 @@ const app = new koa();
 art(app, {
   root: 'views',
   extname: '.art',
-  debug: process.env.NODE_ENV != 'production'
+  debug: process.env.NODE_ENV == 'development'
 })
 
 const pageRouter = require('./routers/pageRouter');

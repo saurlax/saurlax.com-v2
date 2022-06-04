@@ -9,6 +9,7 @@
   <ul>
     <li>5.28 添加了月份主题色 好看吧~</li>
     <li>5.29 more buttons~~~</li>
+    <li>6.4 checkbox and radio</li>
   </ul>
   <div class="space wrap block">
     <div class="space wrap block">
@@ -27,9 +28,15 @@
       <textarea class="block">block 占满整行</textarea>
     </div>
     <div class="space wrap block">
-      <input type="checkbox"><input type="checkbox"><input type="checkbox">
-      <input type="radio"><input type="radio"><input type="radio">
+      <input type="checkbox" checked="true"><input type="checkbox" checked="indeterminate"><input type="checkbox">
+      <input type="radio" checked="true"><input type="radio"><input type="radio">
     </div>
+  </div>
+  
+  <div id="write">
+    <h1>Latex style testing | Latex 样式测试</h1>
+    <h2>嗨嗨嗨！This latex theme style is copied from https://github.com/Keldos-Li/typora-latex-theme/. Thanks for his work.</h2>
+    <p>普通的 normal 段落</p>
   </div>
 </div>
 {{/block}}

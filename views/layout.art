@@ -8,6 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/styles/base.css">
   <link rel="stylesheet" href="/styles/layout.css">
+  <link rel="stylesheet" href="/styles/latex.css">
   <script src="/scripts/base.js"></script>
   <title>{{block 'title'}}{{/block}} - Saurlax</title>
 </head>
