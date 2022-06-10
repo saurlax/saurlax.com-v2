@@ -15,6 +15,16 @@ const apiRouter = require('./routers/apiRouter');
 app.use(pageRouter.routes()).use(pageRouter.allowedMethods());
 app.use(apiRouter.routes()).use(apiRouter.allowedMethods());
 app.use(serve('public'));
+app.use(async (ctx, next) => {
+  if (ctx.path.split('/')[1] != 'api') {
+    try {
+      await next();
+      if (!ctx.body) ctx.render('pages/404');
+    } catch {
+      ctx.render('pages/500');
+    }
+  }
+})
 
 app.listen(process.env.PORT);
 console.log(`Server is listening on port ${process.env.PORT}`);

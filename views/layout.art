@@ -9,8 +9,11 @@
   <link rel="stylesheet" href="/styles/base.css">
   <link rel="stylesheet" href="/styles/layout.css">
   <link rel="stylesheet" href="/styles/latex.css">
+  <script src="https://unpkg.com/color-js@1.0.5/color.js"></script>
   <script src="/scripts/base.js"></script>
+  <script src="/scripts/theme.js"></script>
   <title>{{block 'title'}}{{/block}} - Saurlax</title>
+  {{block 'head'}}{{/block}}
 </head>
 
 <body>
@@ -19,13 +22,12 @@
       <img src="/favicon.svg">
       <div>
         <span>𝕾𝖆𝖚𝖗𝖑𝖆𝖝</span>
-        <sup id="theme"></sup>
       </div>
     </div>
     <div class="navbar space">
-      <a>博客</a>
-      <a>笔记</a>
-      <a>项目</a>
+      <a href="/blog">博客</a>
+      <a href="/note">笔记</a>
+      <a href="/project">项目</a>
     </div>
   </header>
   <div class="content">{{block 'content'}}{{/block}}</div>

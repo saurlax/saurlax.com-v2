@@ -1,0 +1,6 @@
+.poster {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-image: url('/api/bing');
+}

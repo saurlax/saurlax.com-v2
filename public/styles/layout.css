@@ -36,6 +36,33 @@ footer {
   font-weight: bold;
 }
 
-.logo sup {
-  color: var(--color-primary);
+/* Global Style */
+
+.width-limit {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+}
+
+.space {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.space.wrap {
+  flex-wrap: wrap;
+}
+
+.space.block {
+  display: flex;
+  width: 100%;
+}
+
+.margin {
+  margin: 20px;
+}
+
+.padding {
+  padding: 20px;
 }
