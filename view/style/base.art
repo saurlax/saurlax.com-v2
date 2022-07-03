@@ -1,0 +1,251 @@
+<style name="base">
+  :root {
+    --color-primary-deep: #000000;
+    --color-primary: teal;
+    --color-primary-1: #212121dd;
+    --color-primary-2: #212121bb;
+    --color-primary-3: #21212199;
+    --color-primary-4: #21212177;
+    --color-primary-5: #21212155;
+    --color-primary-6: #21212133;
+    --color-primary-7: #21212111;
+    --color-primary-hover: var(--color-primary-1);
+    --color-primary-active: var(--color-primary-deep);
+    --color-danger: #ff4d4f;
+    --color-danger-hover: #ff7875;
+    --color-danger-active: #d9363e;
+    --color-white: #ffffff;
+    --color-light: #dddddd;
+    --color-lightgray: #bbbbbb;
+    --color-gray: #999999;
+    --color-darkgray: #777777;
+    --color-dark: #555555;
+    --color-text: #212121;
+    --color-border: #d9d9d9;
+
+    --header-height: 52px;
+
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    color: var(--color-white);
+    background-color: var(--color-primary);
+  }
+
+  * {
+    font-size: 14px;
+    color: var(--color-text);
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    font-family: "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  body {
+    margin: 0;
+  }
+
+  @media screen and (max-width:600px) {
+    .mobile-hide {
+      display: none;
+    }
+  }
+
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  a:hover,
+  a:focus {
+    color: var(--color-primary-hover);
+  }
+
+  a:active {
+    color: var(--color-primary-active);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  button {
+    outline: 0;
+    line-height: 1.5715;
+    padding: 4px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    background-color: var(--color-white);
+    cursor: pointer;
+    user-select: none;
+    --button-color: var(--color-primary);
+    --button-color-hover: var(--color-primary-hover);
+    --button-color-active: var(--color-primary-active);
+  }
+
+  button.block {
+    display: block;
+    width: 100%;
+  }
+
+  button.dashed {
+    border-style: dashed;
+  }
+
+  button.danger {
+    --button-color: var(--color-danger);
+    --button-color-hover: var(--color-danger-hover);
+    --button-color-active: var(--color-danger-active);
+    color: var(--button-color);
+    border-color: var(--button-color);
+  }
+
+  button:hover,
+  button:focus {
+    color: var(--button-color-hover);
+    border-color: var(--button-color-hover);
+  }
+
+  button:active {
+    color: var(--button-color-active);
+    border-color: var(--button-color-active);
+  }
+
+
+  button.primary {
+    color: var(--color-white);
+    border-color: transparent;
+    background-color: var(--button-color);
+    text-shadow: 0 -1px 0 #0000001f;
+  }
+
+  button.primary:hover,
+  button.primary:focus {
+    background-color: var(--button-color-hover);
+  }
+
+  button.primary:active {
+    background-color: var(--button-color-active);
+  }
+
+  input,
+  textarea {
+    outline: 0;
+    resize: none;
+    line-height: 1.5715;
+    width: 200px;
+    padding: 4px 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    background-color: var(--color-white);
+  }
+
+  input:hover,
+  input:focus,
+  textarea:hover,
+  textarea:focus {
+    border-color: var(--color-primary-hover);
+  }
+
+  input.block,
+  textarea.block {
+    display: block;
+    width: 100%;
+  }
+
+  input[type='checkbox'],
+  input[type='radio'] {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    margin: 2px;
+    cursor: pointer;
+  }
+
+  input[type='checkbox']::before,
+  input[type='radio']::before {
+    display: inline-block;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    content: '';
+    border-radius: 2px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-white);
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  input[type='radio']::before {
+    border-radius: 8px;
+  }
+
+  input[type='checkbox']:hover::before,
+  input[type='checkbox']:focus::before,
+  input[type='radio']:hover::before,
+  input[type='radio']:focus::before {
+    border-color: var(--color-primary-hover);
+  }
+
+  input[type='checkbox']:active::before,
+  input[type='radio']:active::before {
+    border-color: var(--color-primary-active);
+  }
+
+  input[type='checkbox']:checked::before {
+    border-color: transparent;
+    background-color: var(--color-primary);
+  }
+
+  input[type='radio']:checked::before {
+    border-color: var(--color-primary);
+  }
+
+  input[type='checkbox']::after {
+    display: inline-block;
+    position: absolute;
+    top: 3px;
+    left: 2px;
+    right: 2px;
+    bottom: 5px;
+    content: '';
+    border-left: 2px solid var(--color-white);
+    border-bottom: 2px solid var(--color-white);
+    transform: rotate(-45deg);
+  }
+
+
+
+  input[type='radio']::after {
+    display: inline-block;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    content: '';
+    border-radius: 8px;
+    background-color: var(--color-primary);
+  }
+
+  input[type='checkbox']::after,
+  input[type='radio']::after {
+    opacity: 0;
+  }
+
+  input[type='checkbox']:checked::after,
+  input[type='radio']:checked::after {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+</style>
