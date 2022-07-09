@@ -5,11 +5,15 @@
   },
   "dependencies": {
     "art-template": "^4.13.2",
+    "axios": "^0.27.2",
     "dotenv": "^16.0.1",
     "koa": "^2.13.4",
     "koa-art-template": "^1.1.1",
+    "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.1.1",
     "koa-static": "^5.0.0",
+    "moment": "^2.29.4",
+    "mongoose": "^6.4.4",
     "showdown": "^1.9.1",
     "showdown-katex": "^0.8.0"
   }

@@ -1,0 +1,6 @@
+{{extend 'component/layout'}}
+
+{{block 'header'}}
+<div class="header-title">404</div>
+<div>找不到此页面</div>
+{{/block}}

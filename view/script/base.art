@@ -1,0 +1,35 @@
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const headerBackgroundElement = document.getElementById('header-background');
+    const amount = parseInt(Math.random() * 20 + 60);
+    for (let i = 0; i < amount; i++) {
+      const bubbleElement = document.createElement('div');
+      bubbleElement.style.setProperty('--size', (Math.random() * 12 + 2) + 'px');
+      bubbleElement.style.setProperty('--left', (Math.random() * 100) + 'vw');
+      bubbleElement.style.setProperty('--duration', (Math.random() + 5) + 's');
+      bubbleElement.style.setProperty('--delay', (Math.random() * 10) + 's');
+      bubbleElement.style.setProperty('--height', (Math.random() * 70 + 30) + '%');
+      headerBackgroundElement.appendChild(bubbleElement);
+    }
+
+    const floatingMenuToEdgeElement = document.getElementById('floating-menu-to-edge');
+    const documentElement = document.documentElement;
+    let target = documentElement.scrollHeight;
+    floatingMenuToEdgeElement.addEventListener('click', () => {
+      scrollTo(screenX, target);
+    });
+    window.addEventListener('scroll', () => {
+      if (documentElement.scrollHeight == documentElement.clientHeight + documentElement.scrollTop) {
+        floatingMenuToEdgeElement.classList.add('reverse');
+        target = 0;
+      } else {
+        floatingMenuToEdgeElement.classList.remove('reverse');
+        target = documentElement.scrollHeight;
+      }
+    })
+
+    const floatingMenuHomeElement = document.getElementById('floating-menu-home');
+    if (location.pathname == '/') floatingMenuHomeElement.style.display = 'none';
+    floatingMenuHomeElement.addEventListener('click', () => { location.pathname = '/' });
+  })
+</script>

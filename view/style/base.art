@@ -1,251 +1,205 @@
-<style name="base">
+<style>
   :root {
-    --color-primary-deep: #000000;
-    --color-primary: teal;
-    --color-primary-1: #212121dd;
-    --color-primary-2: #212121bb;
-    --color-primary-3: #21212199;
-    --color-primary-4: #21212177;
-    --color-primary-5: #21212155;
-    --color-primary-6: #21212133;
-    --color-primary-7: #21212111;
-    --color-primary-hover: var(--color-primary-1);
-    --color-primary-active: var(--color-primary-deep);
-    --color-danger: #ff4d4f;
-    --color-danger-hover: #ff7875;
-    --color-danger-active: #d9363e;
+    /* color */
+    --color-primary: #096088;
+    --color-primary-hover: #096088dd;
+    --color-primary-66: #09608866;
+    --color-disabled: #bdbdbd;
+    --color-disabled-hover: #d2d2d2;
+    --color-empty: #f3f3f3;
     --color-white: #ffffff;
-    --color-light: #dddddd;
-    --color-lightgray: #bbbbbb;
-    --color-gray: #999999;
-    --color-darkgray: #777777;
-    --color-dark: #555555;
-    --color-text: #212121;
-    --color-border: #d9d9d9;
+    --text-dashed: #88888888;
+    --color-border: #bdbdbd;
+    --color-hr: #88888866;
+    --color-latent: #bdbdbd88;
+    --color-shadow: #21212188;
 
-    --header-height: 52px;
+    /* layout */
+    --header-height: 600px;
 
+    background-color: var(--color-empty);
     -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
   }
 
   ::selection {
     color: var(--color-white);
-    background-color: var(--color-primary);
-  }
-
-  * {
-    font-size: 14px;
-    color: var(--color-text);
-    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-    font-family: "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  }
-
-  body {
-    margin: 0;
-  }
-
-  @media screen and (max-width:600px) {
-    .mobile-hide {
-      display: none;
-    }
+    background-color: var(--color-primary-66);
   }
 
   a {
     color: var(--color-primary);
     text-decoration: none;
-    cursor: pointer;
   }
 
-  a:hover,
-  a:focus {
+  a:hover {
     color: var(--color-primary-hover);
   }
 
-  a:active {
-    color: var(--color-primary-active);
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 8px 0;
-  }
-
-  h1 {
-    font-size: 2rem;
+  hr {
+    border: none;
+    border-top: 1px dashed var(--color-hr);
   }
 
   button {
-    outline: 0;
-    line-height: 1.5715;
-    padding: 4px 14px;
-    border: 1px solid var(--color-border);
+    outline: none;
+    border: none;
+    padding: 4px 10px;
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    text-shadow: 0 -1px #0000001f;
     border-radius: 2px;
-    background-color: var(--color-white);
-    cursor: pointer;
+    transition: background-color 0.3s ease;
     user-select: none;
-    --button-color: var(--color-primary);
-    --button-color-hover: var(--color-primary-hover);
-    --button-color-active: var(--color-primary-active);
-  }
-
-  button.block {
-    display: block;
-    width: 100%;
-  }
-
-  button.dashed {
-    border-style: dashed;
-  }
-
-  button.danger {
-    --button-color: var(--color-danger);
-    --button-color-hover: var(--color-danger-hover);
-    --button-color-active: var(--color-danger-active);
-    color: var(--button-color);
-    border-color: var(--button-color);
+    cursor: pointer;
   }
 
   button:hover,
   button:focus {
-    color: var(--button-color-hover);
-    border-color: var(--button-color-hover);
+    background-color: var(--color-primary-hover);
   }
 
-  button:active {
-    color: var(--button-color-active);
-    border-color: var(--button-color-active);
+  button.disabled {
+    background-color: var(--color-disabled);
   }
 
-
-  button.primary {
-    color: var(--color-white);
-    border-color: transparent;
-    background-color: var(--button-color);
-    text-shadow: 0 -1px 0 #0000001f;
+  button.disabled:hover,
+  button.disabled:focus {
+    background-color: var(--color-disabled-hover);
   }
 
-  button.primary:hover,
-  button.primary:focus {
-    background-color: var(--button-color-hover);
-  }
-
-  button.primary:active {
-    background-color: var(--button-color-active);
-  }
-
-  input,
-  textarea {
-    outline: 0;
-    resize: none;
-    line-height: 1.5715;
-    width: 200px;
+  input {
+    outline: none;
     padding: 4px 10px;
     border: 1px solid var(--color-border);
     border-radius: 2px;
-    background-color: var(--color-white);
+    transition: border-color 0.3s ease;
   }
 
   input:hover,
-  input:focus,
-  textarea:hover,
-  textarea:focus {
-    border-color: var(--color-primary-hover);
-  }
-
-  input.block,
-  textarea.block {
-    display: block;
-    width: 100%;
-  }
-
-  input[type='checkbox'],
-  input[type='radio'] {
-    position: relative;
-    width: 14px;
-    height: 14px;
-    margin: 2px;
-    cursor: pointer;
-  }
-
-  input[type='checkbox']::before,
-  input[type='radio']::before {
-    display: inline-block;
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    right: -1px;
-    bottom: -1px;
-    content: '';
-    border-radius: 2px;
-    border: 1px solid var(--color-border);
-    background-color: var(--color-white);
-    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-  }
-
-  input[type='radio']::before {
-    border-radius: 8px;
-  }
-
-  input[type='checkbox']:hover::before,
-  input[type='checkbox']:focus::before,
-  input[type='radio']:hover::before,
-  input[type='radio']:focus::before {
-    border-color: var(--color-primary-hover);
-  }
-
-  input[type='checkbox']:active::before,
-  input[type='radio']:active::before {
-    border-color: var(--color-primary-active);
-  }
-
-  input[type='checkbox']:checked::before {
-    border-color: transparent;
-    background-color: var(--color-primary);
-  }
-
-  input[type='radio']:checked::before {
+  input:focus {
     border-color: var(--color-primary);
   }
 
-  input[type='checkbox']::after {
-    display: inline-block;
+  body {
+    color: #212121;
+    margin: 0;
+  }
+
+  * {
+    font-size: 14px;
+    font-family: "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  header {
+    position: relative;
+    height: var(--header-height);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-size: cover;
+    background-position: center;
+    background-image: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.3dmgame.com%2Fuploads%2Fimages2%2Fnews%2F20201113%2F1605250554_501986.jpg&refer=http%3A%2F%2Fimg.3dmgame.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659952719&t=d0492b007203d7c07fc3815d93fbdca0");
+    box-shadow: inset 0 0 10px var(--color-shadow);
+    text-shadow: 0 0 10px var(--color-shadow);
+  }
+
+  .header-title {
+    font-size: 2.4rem;
+    font-weight: bold;
+    font-family: "Playball";
+  }
+
+  #header-background {
     position: absolute;
-    top: 3px;
-    left: 2px;
-    right: 2px;
-    bottom: 5px;
-    content: '';
-    border-left: 2px solid var(--color-white);
-    border-bottom: 2px solid var(--color-white);
-    transform: rotate(-45deg);
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 
-
-
-  input[type='radio']::after {
-    display: inline-block;
+  #header-background div {
     position: absolute;
-    top: 3px;
-    left: 3px;
-    right: 3px;
-    bottom: 3px;
-    content: '';
-    border-radius: 8px;
-    background-color: var(--color-primary);
+    display: inline-block;
+    background-color: #ffffff66;
+    width: var(--size);
+    height: var(--size);
+    left: var(--left);
+    bottom: -20px;
+    border-radius: var(--size);
+    animation: header-background-bubble-rising var(--duration) linear var(--delay) infinite;
   }
 
-  input[type='checkbox']::after,
-  input[type='radio']::after {
-    opacity: 0;
+  @keyframes header-background-bubble-rising {
+    from {
+      bottom: -20px;
+    }
+
+    to {
+      bottom: var(--height);
+      opacity: 0;
+    }
   }
 
-  input[type='checkbox']:checked::after,
-  input[type='radio']:checked::after {
-    opacity: 1;
-    transition: opacity 0.3s ease;
+  .footer-slogan {
+    color: var(--text-dashed);
+  }
+
+  .footer-hr {
+    width: 600px;
+    max-width: 80vw;
+  }
+
+
+  footer {
+    font-size: 0.8rem;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    text-align: center;
+    color: var(--color-white);
+    background-color: #212121;
+    box-shadow: 0 0 10px var(--color-shadow);
+  }
+
+  .warnbar {
+    padding: 4px 10px;
+    background-color: #fffbe6;
+    border: 1px solid #ffe58f;
+  }
+
+  .floating-menu {
+    position: fixed;
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .floating-menu div {
+    color: var(--color-primary);
+    margin: 4px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 32px;
+    box-shadow: 0 2px 4px var(--color-latent);
+    background-color: var(--color-white);
+    cursor: pointer;
+  }
+
+  #floating-menu-to-edge svg {
+    transition: transform 0.3s ease;
+  }
+
+  #floating-menu-to-edge.reverse svg {
+    transform: rotate(180deg);
+  }
+
+  @media screen and (max-width: 600px) {
+    :root {
+      --header-height: 300px;
+    }
   }
 </style>

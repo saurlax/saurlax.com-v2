@@ -1,8 +1,64 @@
 <style>
-  .poster {
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-    background-image: url('/api/bing');
+  .content {
+    margin: auto;
+    max-width: 1000px;
+    background-color: var(--color-white);
+    box-shadow: 0 0 10px var(--color-latent);
+  }
+
+  .actionbar {
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
+    border-bottom: 1px solid var(--color-latent);
+  }
+
+  .actionbar button {
+    flex-shrink: 0;
+  }
+
+  .actionbar input {
+    max-width: calc(100% - 180px);
+  }
+
+  .article-list {
+    padding: 20px;
+    padding-top: 0;
+  }
+
+  .article-item {
+    padding: 24px 16px;
+  }
+
+  .article-item:not(:last-child) {
+    border-bottom: 1px dashed var(--color-latent);
+  }
+
+  .article-item-title {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .article-item-title:hover {
+    text-decoration: underline;
+  }
+
+  .article-item-info {
+    margin-top: 8px;
+    color: var(--text-dashed);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .article-item-info span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 </style>
