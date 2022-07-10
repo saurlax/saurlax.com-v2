@@ -1,1 +1,8 @@
-管理
+{{extend 'component/layout'}}
+
+{{block 'header'}}
+<div class="header-title">管理</div>
+{{/block}}
+
+{{block 'content'}}
+{{/block}}

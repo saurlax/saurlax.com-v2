@@ -1,9 +1,12 @@
 <style>
-  .content {
-    margin: auto;
-    max-width: 1000px;
-    background-color: var(--color-white);
-    box-shadow: 0 0 10px var(--color-latent);
+  :root {
+    --header-height: 800px;
+  }
+
+  @media screen and (max-width:600px) {
+    :root {
+      --header-height: 100vh;
+    }
   }
 
   .actionbar {
@@ -23,13 +26,14 @@
     max-width: calc(100% - 180px);
   }
 
-  .article-list {
+  #article-list {
     padding: 20px;
     padding-top: 0;
+    word-break: break-all;
   }
 
   .article-item {
-    padding: 24px 16px;
+    padding: 20px 12px;
   }
 
   .article-item:not(:last-child) {
@@ -38,9 +42,13 @@
 
   .article-item-title {
     display: block;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: bold;
     cursor: pointer;
+  }
+
+  .article-item-title::after {
+    content: " »";
   }
 
   .article-item-title:hover {
@@ -48,12 +56,13 @@
   }
 
   .article-item-info {
+    font-size: 0.8rem;
     margin-top: 8px;
     color: var(--text-dashed);
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 12px;
+    column-gap: 12px;
   }
 
   .article-item-info span {

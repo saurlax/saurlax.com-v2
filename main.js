@@ -2,24 +2,38 @@ const fs = require('fs');
 const os = require('os');
 const Koa = require('koa');
 const static = require('koa-static');
+const Router = require('koa-router');
+const bodyparser = require('koa-bodyparser');
 const render = require('koa-art-template');
 const dotenv = require('dotenv');
-const Router = require('koa-router');
 const moment = require('moment');
 const mongoose = require('mongoose');
-const bodyparser = require('koa-bodyparser');
+const showdown = require('showdown');
+const showdownKatex = require('showdown-katex');
+
+const Article = require('./model/Article');
 
 const app = new Koa();
 const networks = os.networkInterfaces();
 dotenv.config();
 moment.locale('zh-CN');
 mongoose.connect(process.env.DATABASE_URI).then(() => { console.log('Database connected.') });
-
-const runtime = {
-  moment: moment,
-  starttime: moment()
-}
-render(app, { root: 'view', debug: process.env.DEBUG == 'true', imports: runtime });
+render(app, {
+  root: 'view',
+  debug: process.env.DEBUG == 'true',
+  imports: {
+    moment: moment,
+    converter: new showdown.Converter({
+      extensions: [
+        showdownKatex({
+          throwOnError: false,
+          delimiters: []
+        })
+      ]
+    }),
+    starttime: moment()
+  }
+})
 
 if (process.env.DEBUG == 'true') console.log('🚧 \x1B[33mYou are now in DEBUG mode.\x1B[39m');
 
@@ -38,9 +52,21 @@ const apiRouter = new Router();
 const pageRouter = new Router();
 executeOnDirectory('./view', (path, name, prefix) => {
   if (prefix.includes('/style') || prefix.includes('/script') || prefix.includes('/component')) return;
-  const url = `${prefix.split('/view')[1]}/${(name == 'home.art') ? '' : name.split('.')[0]}`;
-
-  pageRouter.get(url, ctx => { ctx.render(name) });
+  const url = `${prefix.split('/view')[1]}/${(name == 'home.art') ? '' : name.split('.')[0].replace(/\[(.+)\]/, ':$1')}`;
+  pageRouter.get(url, async (ctx, next) => {
+    let data = {};
+    switch (url) {
+      case '/article/:id':
+        try {
+          data.article = await Article.findById(ctx.params.id);
+        } catch {
+          next();
+          return;
+        }
+        break;
+    }
+    ctx.render(`./${prefix.slice(6)}/${name}`, data)
+  });
   console.log(`Page loaded: \x1B[36m${url}\x1B[39m`);
 })
 executeOnDirectory('./api', (path, name, prefix) => {
@@ -55,7 +81,7 @@ executeOnDirectory('./api', (path, name, prefix) => {
 app.use(static('public'));
 app.use(new bodyparser());
 app.use(apiRouter.routes()).use(apiRouter.allowedMethods());
-app.use(pageRouter.routes()).use(apiRouter.allowedMethods());
+app.use(pageRouter.routes()).use(pageRouter.allowedMethods());
 app.use(ctx => {
   if (ctx.path.includes('/api')) return;
   ctx.status = 404;

@@ -1,5 +1,9 @@
 {{extend 'component/layout'}}
 
+{{block 'head'}}
+<title>404 - Saurlax</title>
+{{/block}}
+
 {{block 'header'}}
 <div class="header-title">404</div>
 <div>找不到此页面</div>

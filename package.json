@@ -15,6 +15,7 @@
     "moment": "^2.29.4",
     "mongoose": "^6.4.4",
     "showdown": "^1.9.1",
+    "showdown-highlight": "^3.0.0",
     "showdown-katex": "^0.8.0"
   }
 }

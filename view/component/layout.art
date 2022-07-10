@@ -3,26 +3,27 @@
 
 <head>
   <meta charset="UTF-8">
-  <!-- <meta http-equiv="refresh" content="1"> -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="{{block 'description'}}欢迎来到Saurlax的个人网站，一个分享知识与生活的地方。{{/block}}">
   <link rel="icon" href="/favicon.svg">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playball">
   {{include 'style/base'}}
+  <script src="https://unpkg.com/axios@0.27.2/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/moment@2.29.4/min/moment.min.js"></script>
+  <script src="https://unpkg.com/moment@2.29.4/locale/zh-cn.js"></script>
   {{include 'script/base'}}
   {{block 'head'}}{{/block}}
-  <title>Saurlax</title>
 </head>
 
 <body>
-  <div class="warnbar">🚧 网站正处于快速迭代期，可能会有较大变化</div>
   <header>
     <div id="header-background"></div>
     {{block 'header'}}{{/block}}
   </header>
   {{block 'content'}}{{/block}}
   <div class="floating-menu">
+    {{block 'floating-menu'}}{{/block}}
     <div id="floating-menu-home">
       <svg viewBox="64 64 896 896" focusable="false" data-icon="home" width="1em" height="1em" fill="currentColor" aria-hidden="true">
         <path d="M946.5 505L534.6 93.4a31.93 31.93 0 00-45.2 0L77.5 505c-12 12-18.8 28.3-18.8 45.3 0 35.3 28.7 64 64 64h43.4V908c0 17.7 14.3 32 32 32H448V716h112v224h265.9c17.7 0 32-14.3 32-32V614.3h43.4c17 0 33.3-6.7 45.3-18.8 24.9-25 24.9-65.5-.1-90.5z"></path>

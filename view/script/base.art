@@ -1,4 +1,5 @@
 <script>
+  moment.locale('zh-CN');
   document.addEventListener('DOMContentLoaded', () => {
     const headerBackgroundElement = document.getElementById('header-background');
     const amount = parseInt(Math.random() * 20 + 60);
@@ -19,12 +20,12 @@
       scrollTo(screenX, target);
     });
     window.addEventListener('scroll', () => {
-      if (documentElement.scrollHeight == documentElement.clientHeight + documentElement.scrollTop) {
-        floatingMenuToEdgeElement.classList.add('reverse');
-        target = 0;
-      } else {
+      if (documentElement.scrollTop == 0) {
         floatingMenuToEdgeElement.classList.remove('reverse');
         target = documentElement.scrollHeight;
+      } else {
+        floatingMenuToEdgeElement.classList.add('reverse');
+        target = 0;
       }
     })
 

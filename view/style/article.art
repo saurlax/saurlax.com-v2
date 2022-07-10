@@ -1,0 +1,87 @@
+<style>
+  :root {
+    --header-height: 500px;
+
+    --header-background: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.2008php.com%2F2017_Website_appreciate%2F2017-10-31%2F20171031203134.jpg&refer=http%3A%2F%2Fwww.2008php.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660036409&t=2e7ccac1ed1fb3edd12bdf6e31ff1985");
+  }
+
+  @media screen and (max-width:600px) {
+    :root {
+      --header-height: 300px;
+    }
+
+    .header-title {
+      font-size: 1.8rem;
+    }
+  }
+
+  .article-info {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 12px;
+    text-shadow: none;
+    filter: drop-shadow(0 0 4px var(--color-shadow));
+  }
+
+  .article-info span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .article-tags a {
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    padding: 3px 8px;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  #floating-menu-like .liked,
+  #floating-menu-like.liked .disliked {
+    display: none;
+  }
+
+  #floating-menu-like .disliked,
+  #floating-menu-like.liked .liked {
+    display: initial;
+  }
+
+  #floating-menu-like {
+    position: relative;
+  }
+
+  #floating-menu-like.liked {
+    cursor: not-allowed;
+  }
+
+  #floating-menu-like span {
+    color: var(--color-white);
+    background-color: #212121bb;
+    position: absolute;
+    right: 120%;
+    padding: 2px 4px;
+    font-size: 0.6rem;
+    border-radius: 2px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  #floating-menu-like:hover span {
+    opacity: 1;
+  }
+
+  article {
+    padding: 20px;
+    word-break: break-all;
+  }
+
+  article img {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+  }
+</style>

@@ -8,18 +8,27 @@
     --color-disabled-hover: #d2d2d2;
     --color-empty: #f3f3f3;
     --color-white: #ffffff;
+    --color-dark: #212121;
+    --text: #212121;
     --text-dashed: #88888888;
     --color-border: #bdbdbd;
     --color-hr: #88888866;
-    --color-latent: #bdbdbd88;
-    --color-shadow: #21212188;
+    --color-latent: #bdbdbd;
+    --color-shadow: #212121;
 
     /* layout */
-    --header-height: 600px;
+    --header-height: 500px;
+    --header-background: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.zhimg.com%2Fv2-6d7532547a6be37778a23b4e1b92b768_r.jpg%3Fsource%3D1940ef5c&refer=http%3A%2F%2Fpic1.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660056608&t=a210d93f3408482a6586207543dc290f");
 
     background-color: var(--color-empty);
     -webkit-tap-highlight-color: transparent;
     scroll-behavior: smooth;
+  }
+
+  @media screen and (max-width: 600px) {
+    :root {
+      --header-height: 300px;
+    }
   }
 
   ::selection {
@@ -44,7 +53,7 @@
   button {
     outline: none;
     border: none;
-    padding: 4px 10px;
+    padding: 4px 12px;
     color: var(--color-white);
     background-color: var(--color-primary);
     text-shadow: 0 -1px #0000001f;
@@ -70,7 +79,7 @@
 
   input {
     outline: none;
-    padding: 4px 10px;
+    padding: 4px 12px;
     border: 1px solid var(--color-border);
     border-radius: 2px;
     transition: border-color 0.3s ease;
@@ -82,27 +91,28 @@
   }
 
   body {
-    color: #212121;
     margin: 0;
-  }
-
-  * {
+    color: var(--text);
     font-size: 14px;
     font-family: "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
   }
 
+  /* layout */
   header {
     position: relative;
+    padding: 0 20px;
     height: var(--header-height);
     color: var(--color-white);
+    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     background-size: cover;
     background-position: center;
-    background-image: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.3dmgame.com%2Fuploads%2Fimages2%2Fnews%2F20201113%2F1605250554_501986.jpg&refer=http%3A%2F%2Fimg.3dmgame.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1659952719&t=d0492b007203d7c07fc3815d93fbdca0");
-    box-shadow: inset 0 0 10px var(--color-shadow);
+    background-image: var(--header-background);
+    box-shadow: 0 0 4px var(--color-shadow);
     text-shadow: 0 0 10px var(--color-shadow);
   }
 
@@ -110,6 +120,11 @@
     font-size: 2.4rem;
     font-weight: bold;
     font-family: "Playball";
+    word-break: break-all;
+  }
+
+  .header-subtitle {
+    word-break: break-all;
   }
 
   #header-background {
@@ -143,6 +158,22 @@
     }
   }
 
+  .content {
+    margin: auto;
+    max-width: 1000px;
+    background-color: var(--color-white);
+    box-shadow: 0 0 10px var(--color-latent);
+  }
+
+  footer {
+    font-size: 0.8rem;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    text-align: center;
+    color: var(--color-white);
+    background-color: var(--color-dark);
+  }
+
   .footer-slogan {
     color: var(--text-dashed);
   }
@@ -152,39 +183,24 @@
     max-width: 80vw;
   }
 
-
-  footer {
-    font-size: 0.8rem;
-    padding-top: 20px;
-    padding-bottom: 40px;
-    text-align: center;
-    color: var(--color-white);
-    background-color: #212121;
-    box-shadow: 0 0 10px var(--color-shadow);
-  }
-
-  .warnbar {
-    padding: 4px 10px;
-    background-color: #fffbe6;
-    border: 1px solid #ffe58f;
-  }
-
   .floating-menu {
     position: fixed;
+    z-index: 100;
     right: 12px;
     bottom: 12px;
   }
 
   .floating-menu div {
     color: var(--color-primary);
-    margin: 4px;
-    width: 32px;
-    height: 32px;
+    margin: 6px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 32px;
-    box-shadow: 0 2px 4px var(--color-latent);
+    flex-direction: column;
+    border-radius: 36px;
+    box-shadow: 0 2px 4px #88888888;
     background-color: var(--color-white);
     cursor: pointer;
   }
@@ -195,11 +211,5 @@
 
   #floating-menu-to-edge.reverse svg {
     transform: rotate(180deg);
-  }
-
-  @media screen and (max-width: 600px) {
-    :root {
-      --header-height: 300px;
-    }
   }
 </style>

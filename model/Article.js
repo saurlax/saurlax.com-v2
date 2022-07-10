@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 module.exports = mongoose.model('Article', new Schema({
   title: { type: String, required: true, minlength: 1 },
-  abstract: String,
   content: { type: String, required: true, minlength: 1 },
   likes: { type: Number, default: 0 },
   watches: { type: Number, default: 0 },

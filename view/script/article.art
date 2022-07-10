@@ -1,0 +1,20 @@
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const floatingMenuLikeElement = document.getElementById('floating-menu-like');
+    const likedList = localStorage.getItem('likedList');
+    let liked = likedList && likedList.includes('{{@$data._id}}');
+    if (!liked) {
+      floatingMenuLikeElement.addEventListener('click', () => {
+        if (!liked) {
+          liked = true;
+          floatingMenuLikeElement.classList.add('liked');
+          document.querySelectorAll('.var-likes').forEach(element => { element.innerText++ });
+          localStorage.setItem('likedList', (likedList ?? '') + '|{{@$data._id}}|');
+          axios.put('/api/article', { action: 'like', id: '{{@$data._id}}' });
+        }
+      });
+    } else {
+      floatingMenuLikeElement.classList.add('liked');
+    }
+  })
+</script>
