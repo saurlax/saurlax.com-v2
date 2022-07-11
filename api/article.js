@@ -4,9 +4,9 @@ const amountPerPage = 10;
 
 module.exports = {
   get: async ctx => {
-    res = await Article.find({ show: true }).sort({ '_id': -1 }).skip(amountPerPage * ctx.query.page).limit(amountPerPage);
+    res = await Article.find({ show: true }).sort({ '_id': -1 }).skip(amountPerPage * (ctx.query.page ?? 0)).limit(amountPerPage);
     ctx.body = res.map(article => {
-      article.content = article.content.slice(0, 30);
+      article.content = article.content.slice(0, 30) + '...';
       return article;
     })
   },

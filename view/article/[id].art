@@ -39,7 +39,7 @@
 
 {{block 'content'}}
 <div class="content">
-  <article>{{@converter.makeHtml(article.content)}}</article>
+  <article>{{@marked.parse(katex(article.content))}}</article>
 </div>
 {{/block}}
 

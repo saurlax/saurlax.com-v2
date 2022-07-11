@@ -8,8 +8,8 @@ const render = require('koa-art-template');
 const dotenv = require('dotenv');
 const moment = require('moment');
 const mongoose = require('mongoose');
-const showdown = require('showdown');
-const showdownKatex = require('showdown-katex');
+const marked = require('marked');
+const katex = require('katex');
 
 const Article = require('./model/Article');
 
@@ -18,19 +18,25 @@ const networks = os.networkInterfaces();
 dotenv.config();
 moment.locale('zh-CN');
 mongoose.connect(process.env.DATABASE_URI).then(() => { console.log('Database connected.') });
+
+katex.renderToString(`
+\\sum_{i=1}^n i^3 = \\left( \\frac{n(g(n)+1)} 2 \\right) ^2
+`)
 render(app, {
   root: 'view',
   debug: process.env.DEBUG == 'true',
   imports: {
     moment: moment,
-    converter: new showdown.Converter({
-      extensions: [
-        showdownKatex({
-          throwOnError: false,
-          delimiters: []
-        })
-      ]
-    }),
+    marked,
+    katex: (text) => {
+      text.match(/\$\$[^\$]*\$\$/gm)?.forEach(match => {
+        text = text.replace(match, katex.renderToString(match.slice(2, -2), { throwOnError: false }));
+      })
+      text.match(/```latex[^`]*```/gims)?.forEach(match => {
+        text = text.replace(match, katex.renderToString(match.slice(8, -3), { throwOnError: false, displayMode: true }));
+      })
+      return text;
+    },
     starttime: moment()
   }
 })
