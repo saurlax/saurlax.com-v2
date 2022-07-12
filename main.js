@@ -26,8 +26,7 @@ render(app, {
   root: 'view',
   debug: process.env.DEBUG == 'true',
   imports: {
-    moment: moment,
-    marked,
+    moment, marked, Math,
     katex: (text) => {
       text.match(/\$\$[^\$]*\$\$/gm)?.forEach(match => {
         text = text.replace(match, katex.renderToString(match.slice(2, -2), { throwOnError: false }));
@@ -54,6 +53,8 @@ function executeOnDirectory(path, action, prefix) {
   }
 }
 
+const countPerPage = 10;
+
 const apiRouter = new Router();
 const pageRouter = new Router();
 executeOnDirectory('./view', (path, name, prefix) => {
@@ -69,6 +70,18 @@ executeOnDirectory('./view', (path, name, prefix) => {
           next();
           return;
         }
+        break;
+      case '/':
+        page = (ctx.query.page && ctx.query.page >= 0) ?? 0;
+        const res = await Article.find({}).sort({ _id: -1 }).skip(countPerPage * page).limit(countPerPage);
+        if (!res || res.length == 0) { next(); return; }
+        data.count = await Article.find({}).count();
+        data.countPerPage = countPerPage;
+        data.page = page;
+        data.articles = res.map(article => {
+          article.content = article.content.slice(0, 30) + '...';
+          return article;
+        })
         break;
     }
     ctx.render(`./${prefix.slice(6)}/${name}`, data)

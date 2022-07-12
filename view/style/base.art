@@ -5,7 +5,6 @@
     --color-primary-hover: #096088dd;
     --color-primary-66: #09608866;
     --color-disabled: #bdbdbd;
-    --color-disabled-hover: #d2d2d2;
     --color-empty: #f3f3f3;
     --color-white: #ffffff;
     --color-dark: #212121;
@@ -70,23 +69,23 @@
 
   button.disabled {
     background-color: var(--color-disabled);
+    cursor: not-allowed;
   }
 
-  button.disabled:hover,
-  button.disabled:focus {
-    background-color: var(--color-disabled-hover);
-  }
-
-  input {
+  input,
+  textarea {
     outline: none;
-    padding: 4px 12px;
+    padding: 4px 8px;
     border: 1px solid var(--color-border);
     border-radius: 2px;
     transition: border-color 0.3s ease;
+    font-family: inherit;
   }
 
   input:hover,
-  input:focus {
+  input:focus,
+  textarea:hover,
+  textarea:focus {
     border-color: var(--color-primary);
   }
 
@@ -94,6 +93,7 @@
     margin: 0;
     color: var(--text);
     font-size: 14px;
+    text-size-adjust: 100%;
     font-family: "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   }
