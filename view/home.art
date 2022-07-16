@@ -5,8 +5,8 @@
 <title>首页 - Saurlax</title>
 {{/block}}
 {{block 'head-lazy'}}
-<link rel='stylesheet' href='http://cdn.repository.webfont.com/webfonts/nomal/149562/37509/62d219fef629d813acb2284f.css'>
-<link rel='stylesheet' href='http://cdn.repository.webfont.com/webfonts/nomal/149562/45803/62d23931f629d813acb22851.css' />
+<link rel='stylesheet' href='https://cdn.repository.webfont.com/webfonts/nomal/149562/37509/62d219fef629d813acb2284f.css'>
+<link rel='stylesheet' href='https://cdn.repository.webfont.com/webfonts/nomal/149562/45803/62d23931f629d813acb22851.css' />
 {{include 'script/home'}}
 {{/block}}
 
