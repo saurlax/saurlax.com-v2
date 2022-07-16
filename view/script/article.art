@@ -15,4 +15,29 @@
   } else {
     floatingMenuLikeElement.classList.add('liked');
   }
+
+  const formElement = document.getElementById('comments-form');
+  const formSwitchElement = document.getElementById('comments-form-switch');
+  formSwitchElement.addEventListener('click', () => {
+    formElement.classList.add('show');
+    formSwitchElement.classList.add('hide');
+  })
+
+  const commentsFormAuthorElement = document.getElementById('comments-form-author');
+  const commentsFormEmailElement = document.getElementById('comments-form-email');
+  const commentsFormContentElement = document.getElementById('comments-form-content');
+  const commentsFormSubmitElement = document.getElementById('comments-form-submit');
+  commentsFormSubmitElement.addEventListener('click', async () => {
+    const data = {
+      author: (commentsFormAuthorElement.value && commentsFormAuthorElement.value != '') ? commentsFormAuthorElement.value : '匿名用户',
+      email: commentsFormEmailElement.value,
+      content: commentsFormContentElement.value
+    }
+    const res = await axios.put('/api/article', { action: 'commit', id: '{{@$data._id}}', data });
+    if (res.data.error) {
+      alert(res.data.error);
+    } else {
+      alert('您的留言已提交成功，审核通过后将会公开(*^▽^*)');
+    }
+  })
 </script>

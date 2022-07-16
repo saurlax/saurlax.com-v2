@@ -1,13 +1,33 @@
 <script>
   const actionElement = document.getElementById('action');
   const actionSwitchElement = document.getElementById('action-switch');
-  let show = false;
+  let showAction = false;
   actionSwitchElement.addEventListener('click', () => {
-    if (show) {
+    if (showAction) {
       actionElement.classList.remove('show');
     } else {
       actionElement.classList.add('show');
     }
-    show = !show;
+    showAction = !showAction;
+  })
+
+  let params = new URLSearchParams(location.search.slice(1));
+  function lastPage() {
+    params.set('page', -+-params.get('page') - 1);
+    location.search = params.toString();
+  }
+
+  function nextPage() {
+    params.set('page', -+-params.get('page') + 1); console.log(params.toString());
+    location.search = params.toString();
+  }
+
+  const actionSearchElement = document.getElementById('action-search');
+  actionSearchElement.addEventListener('keydown', e => {
+    if (e.keyCode == 13) {
+      params.delete('page');
+      params.set('wd', actionSearchElement.value);
+      location.search = params.toString();
+    }
   })
 </script>

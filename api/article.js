@@ -20,13 +20,20 @@ module.exports = {
   put: async ctx => {
     const body = ctx.request.body;
     if (!body.action || !body.id) return;
+    let article = await Article.findById(body.id);
     switch (body.action) {
       case 'like':
-        let article = await Article.findById(body.id);
         article.likes++;
-        await article.save();
-        ctx.status = 200;
         break;
+      case 'commit':
+        article.comments.push({ ...body.data, show: false, date: new Date() });
+        break;
+    }
+    try {
+      await article.save();
+      ctx.status = 200;
+    } catch (e) {
+      ctx.body = { error: e.message };
     }
   }
 }

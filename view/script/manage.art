@@ -1,0 +1,15 @@
+<script>
+  let showEditor = false;
+  const editorSwitchElement = document.getElementById('editor-switch');
+  const editorElement = document.getElementById('editor');
+  editorSwitchElement.addEventListener('click', () => {
+    if (showEditor) {
+      editorSwitchElement.innerText = '展开';
+      editorElement.classList.remove('show');
+    } else {
+      editorSwitchElement.innerText = '折叠';
+      editorElement.classList.add('show');
+    }
+    showEditor = !showEditor;
+  })
+</script>

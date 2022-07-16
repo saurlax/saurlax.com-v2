@@ -1,11 +1,11 @@
 {{extend '../component/layout'}}
 
 {{block 'head'}}
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.0/katex.min.css">
 {{include '../style/article'}}
 <title>{{article.title}} - Saurlax</title>
 {{/block}}
 {{block 'head-lazy'}}
-<link rel="stylesheet" href="https://unpkg.com/katex@0.16.0/dist/katex.min.css">
 {{include '../script/article' article}}
 {{/block}}
 
@@ -43,15 +43,24 @@
 <div class="content">
   <div class="article">{{@marked.parse(katex(article.content))}}</div>
   <div class="comments">
-    <div class="comments-form">
+    <div id="comments-form">
       <div>
-        <input placeholder="昵称" />
-        <input placeholder="邮箱" />
-        <button>提交</button>
+        <input id="comments-form-author" placeholder="昵称" />
+        <input id="comments-form-email" placeholder="邮箱" />
+        <button id="comments-form-submit">提交</button>
       </div>
-      <textarea placeholder="1.如果您有任何疑问或好的点子，欢迎在此发表留言！&#10;2.若“昵称”为空将显示为“匿名用户”。您可选择填写“邮箱”，以便我通过邮件回复您的留言，您的邮箱不会被公开；&#10;3.请注意您的言行，非法或恶意内容将不被允许；&#10;4.您的留言将在审核通过后公开。"></textarea>
+      <textarea id="comments-form-content" placeholder="1.如果您有任何疑问或好的点子，欢迎在此发表留言！&#10;2.若“昵称”为空将显示为“匿名用户”。您可选择填写“邮箱”，以便我通过邮件回复您的留言，您的邮箱不会被公开；&#10;3.请注意您的言行，非法或恶意内容将不被允许；&#10;4.您的留言将在审核通过后公开。"></textarea>
     </div>
-    <div class="comments-title">留言列表</div>
+    <div class="comments-title">
+      <div>留言列表 »</div>
+      <span id="comments-form-switch">
+        <svg viewBox="64 64 896 896" focusable="false" data-icon="plus" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+          <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"></path>
+          <path d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"></path>
+        </svg>
+        <span>留言</span>
+      </span>
+    </div>
     <div class="comments-list">
       {{each article.comments}}
       <div class="comments-item">
@@ -59,7 +68,7 @@
           <span class="comments-item-author">{{$value.author}}</span>
           <span class="comments-item-date">{{moment($value.date).fromNow()}}</span>
         </div>
-        <div class="comments-item-content">你好啊</div>
+        <div class="comments-item-content">{{$value.content}}</div>
       </div>
       {{/each}}
       <div class="comments-end">没有更多啦(｀・ω・´)</div>

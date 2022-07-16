@@ -2,22 +2,22 @@
   :root {
     /* color */
     --color-primary: #096088;
-    --color-primary-hover: #096088dd;
-    --color-primary-66: #09608866;
+    --color-primary-hover: #1274a1;
+    --color-primary-66: #217faa;
     --color-disabled: #bdbdbd;
     --color-empty: #f3f3f3;
     --color-white: #ffffff;
     --color-dark: #212121;
     --text: #212121;
-    --text-dashed: #88888888;
-    --color-border: #bdbdbd;
-    --color-hr: #88888866;
+    --text-dashed: #aaaaaa;
+    --color-border: #e2e2e2;
+    --color-hr: #757575;
     --color-latent: #bdbdbd;
     --color-shadow: #212121;
 
     /* layout */
     --header-height: 500px;
-    --header-background: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.zhimg.com%2Fv2-6d7532547a6be37778a23b4e1b92b768_r.jpg%3Fsource%3D1940ef5c&refer=http%3A%2F%2Fpic1.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660056608&t=a210d93f3408482a6586207543dc290f");
+    --header-background: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-01-10%2F5a55b29e06143.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660524290&t=37d86153a763b6f3afa143a1d1d6c827");
 
     background-color: var(--color-empty);
     -webkit-tap-highlight-color: transparent;
@@ -89,6 +89,22 @@
     border-color: var(--color-primary);
   }
 
+  select {
+    color: var(--text);
+    padding: 4px 8px;
+    outline: none;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    background-color: var(--color-white);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  select:hover,
+  select:focus {
+    border-color: var(--color-primary);
+  }
+
   body {
     margin: 0;
     color: var(--text);
@@ -119,7 +135,6 @@
   .header-title {
     font-size: 2.4rem;
     font-weight: bold;
-    font-family: "Playball";
     word-break: break-all;
   }
 
@@ -162,20 +177,26 @@
     margin: auto;
     max-width: 1000px;
     background-color: var(--color-white);
-    box-shadow: 0 0 10px var(--color-latent);
+    box-shadow: 0 0 4px var(--color-latent);
   }
 
   footer {
+    margin-top: 40px;
     font-size: 0.8rem;
     padding-top: 20px;
-    padding-bottom: 40px;
+    padding-bottom: 60px;
     text-align: center;
-    color: var(--color-white);
+    color: var(--text-dashed);
     background-color: var(--color-dark);
   }
 
-  .footer-slogan {
-    color: var(--text-dashed);
+  footer a {
+    color: inherit;
+  }
+
+  footer a:hover {
+    color: inherit;
+    text-decoration: underline;
   }
 
   .footer-hr {
@@ -200,7 +221,7 @@
     justify-content: center;
     flex-direction: column;
     border-radius: 36px;
-    box-shadow: 0 2px 4px #88888888;
+    box-shadow: 0 2px 4px #888888;
     background-color: var(--color-white);
     cursor: pointer;
   }
@@ -211,5 +232,10 @@
 
   #floating-menu-to-edge.reverse svg {
     transform: rotate(180deg);
+  }
+
+  .tips {
+    padding: 20px;
+    text-align: center;
   }
 </style>

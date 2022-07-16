@@ -5,32 +5,39 @@
 <title>首页 - Saurlax</title>
 {{/block}}
 {{block 'head-lazy'}}
+<link rel='stylesheet' href='http://cdn.repository.webfont.com/webfonts/nomal/149562/37509/62d219fef629d813acb2284f.css'>
+<link rel='stylesheet' href='http://cdn.repository.webfont.com/webfonts/nomal/149562/45803/62d23931f629d813acb22851.css' />
 {{include 'script/home'}}
 {{/block}}
 
 {{block 'header'}}
 <div class="header-title">Saurlax</div>
 <div class="header-subtitle">草色烟光残照里 无言谁会凭阑意</div>
-<div id="action-switch">☰ MENU</div>
+<div id="action-switch">
+  <svg viewBox="64 64 896 896" focusable="false" data-icon="search" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+    <path d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"></path>
+  </svg>
+  <span>SEARCH</span>
+</div>
 {{/block}}
 
 {{block 'content'}}
 <div class="content">
   <div id="action">
     <div class="action-upper">
-      <input placeholder="按下回车键发起搜索" />
+      <input id="action-search" value="{{wd}}" placeholder="按下回车键发起搜索" />
       {{if page > 0}}
-      <button>上一页</button>
+      <button onclick="lastPage()">上一页</button>
       {{else}}
-      <button class="disabled" onclick="last()">上一页</button>
+      <button class="disabled">上一页</button>
       {{/if}}
       {{if count > (page + 1) * countPerPage}}
-      <button>下一页</button>
+      <button onclick="nextPage()">下一页</button>
       {{else}}
-      <button class="disabled" onclick="next()">下一页</button>
+      <button class="disabled">下一页</button>
       {{/if}}
     </div>
-    <div class="result">共找到{{count}}篇文章，当前展示第{{page + 1}}/{{Math.ceil(count / countPerPage)}}页</div>
+    <div class="result">共找到{{count}}篇文章，当前展示第{{@page + 1}}/{{Math.ceil(count / countPerPage)}}页</div>
   </div>
   <div id="article-list">
     {{each articles}}
@@ -62,15 +69,39 @@
           </svg>
           <span>{{$value.comments.length}}</span>
         </span>
+        {{if $value.tags.length > 0}}
         <span>
           <svg viewBox="64 64 896 896" focusable="false" data-icon="tags" width="1em" height="1em" fill="currentColor" aria-hidden="true">
             <path d="M483.2 790.3L861.4 412c1.7-1.7 2.5-4 2.3-6.3l-25.5-301.4c-.7-7.8-6.8-13.9-14.6-14.6L522.2 64.3c-2.3-.2-4.7.6-6.3 2.3L137.7 444.8a8.03 8.03 0 000 11.3l334.2 334.2c3.1 3.2 8.2 3.2 11.3 0zm122.7-533.4c18.7-18.7 49.1-18.7 67.9 0 18.7 18.7 18.7 49.1 0 67.9-18.7 18.7-49.1 18.7-67.9 0-18.7-18.7-18.7-49.1 0-67.9zm283.8 282.9l-39.6-39.5a8.03 8.03 0 00-11.3 0l-362 361.3-237.6-237a8.03 8.03 0 00-11.3 0l-39.6 39.5a8.03 8.03 0 000 11.3l243.2 242.8 39.6 39.5c3.1 3.1 8.2 3.1 11.3 0l407.3-406.6c3.1-3.1 3.1-8.2 0-11.3z"></path>
           </svg>
-          <span>{{$value.tags.length > 0 ? $value.tags.join(' ') : '无标签'}}</span>
+          <span>
+            {{each $value.tags}}
+            <a class="tag" href="/tags/{{$value}}">{{$value}}</a>
+            {{/each}}
+          </span>
         </span>
+        {{/if}}
       </div>
     </div>
     {{/each}}
+    {{if articles.length == 0}}
+    <div class="tips">
+      <div>(╯°Д°)╯</div>
+      <div>没有文章满足您的搜索条件</div>
+    </div>
+    {{/if}}
+  </div>
+  <div class="action-lower">
+    {{if page > 0}}
+    <button onclick="lastPage()">上一页</button>
+    {{else}}
+    <button class="disabled">上一页</button>
+    {{/if}}
+    {{if count > (page + 1) * countPerPage}}
+    <button onclick="nextPage()">下一页</button>
+    {{else}}
+    <button class="disabled">下一页</button>
+    {{/if}}
   </div>
 </div>
 {{/block}}

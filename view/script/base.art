@@ -13,15 +13,15 @@
   }
 
   const floatingMenuToEdgeElement = document.getElementById('floating-menu-to-edge');
-  const documentElement = document.documentElement;
-  let target = documentElement.scrollHeight;
+  const pageY = document.documentElement.scrollHeight;
+  let target = pageY;
   floatingMenuToEdgeElement.addEventListener('click', () => {
-    scrollTo(screenX, target);
-  });
+    scrollTo(scrollX, target);
+  })
   window.addEventListener('scroll', () => {
-    if (documentElement.scrollTop == 0) {
+    if (scrollY == 0) {
       floatingMenuToEdgeElement.classList.remove('reverse');
-      target = documentElement.scrollHeight;
+      target = pageY;
     } else {
       floatingMenuToEdgeElement.classList.add('reverse');
       target = 0;

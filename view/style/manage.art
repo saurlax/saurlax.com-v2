@@ -1,2 +1,53 @@
 <style>
+  .content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .manage-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .editor-upper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 8px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-empty);
+  }
+
+  #editor {
+    display: flex;
+    align-items: stretch;
+    height: 50px;
+  }
+
+  #editor div {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    transition: all 0.3s ease;
+  }
+
+  #editor.show {
+    height: 500px;
+  }
+
+  textarea {
+    display: block;
+    border: none;
+    width: calc(100% - 16px);
+    height: calc(100% - 8px);
+    resize: none;
+  }
+
+  .preview {
+    padding: 4px 8px;
+    overflow: auto;
+  }
+
+  .article-info {}
 </style>

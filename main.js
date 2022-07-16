@@ -35,8 +35,7 @@ render(app, {
         text = text.replace(match, katex.renderToString(match.slice(8, -3), { throwOnError: false, displayMode: true }));
       })
       return text;
-    },
-    starttime: moment()
+    }
   }
 })
 
@@ -65,21 +64,42 @@ executeOnDirectory('./view', (path, name, prefix) => {
     switch (url) {
       case '/article/:id':
         try {
-          data.article = await Article.findById(ctx.params.id);
+          let res = await Article.findById(ctx.params.id);
+          if (!res.show) {
+            next();
+            return;
+          }
+          res.comments = res.comments.filter(comment => {
+            return comment.show;
+          })
+          data.article = res;
         } catch {
           next();
           return;
         }
         break;
       case '/':
-        page = (ctx.query.page && ctx.query.page >= 0) ?? 0;
-        const res = await Article.find({}).sort({ _id: -1 }).skip(countPerPage * page).limit(countPerPage);
-        if (!res || res.length == 0) { next(); return; }
-        data.count = await Article.find({}).count();
+        let factor = { show: true };
+        let wd = ctx.query.wd;
+        if (wd && wd != '') {
+          factor.$or = [
+            { title: new RegExp(wd) },
+            { content: new RegExp(wd) },
+            { tags: new RegExp(wd) }
+          ];
+        }
+        let page = ctx.query.page;
+        page = (page && page >= 0) ? parseInt(page) : 0;
+        let res = await Article.find(factor).sort({ _id: -1 }).skip(countPerPage * page).limit(countPerPage);
+        data.count = await Article.find(factor).count();
         data.countPerPage = countPerPage;
         data.page = page;
+        data.wd = wd;
         data.articles = res.map(article => {
           article.content = article.content.slice(0, 30) + '...';
+          article.comments = article.comments.filter(comment => {
+            return comment.show;
+          })
           return article;
         })
         break;

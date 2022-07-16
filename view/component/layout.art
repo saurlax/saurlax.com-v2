@@ -31,16 +31,22 @@
     </div>
   </div>
   <footer>
-    <div class="footer-slogan">衣带渐宽终不悔 为伊消得人憔悴</div>
+    <div>
+      <b>友情链接</b>
+      <a href="/">Saurlax</a>
+    </div>
+    <div>
+      <b>CDN加速</b>
+      <a href="https://www.staticfile.org/">StaticfileCDN</a>
+      <a href="https://www.webfont.com/">有字库</a>
+    </div>
     <hr class="footer-hr">
-    <div>已与你走过 {{moment(starttime).fromNow(true)}}</div>
     <div>Copyright © 2021-{{moment().format('yyyy')}} Saurlax</div>
   </footer>
-  <script src="https://unpkg.com/axios@0.27.2/dist/axios.min.js"></script>
-  <script src="https://unpkg.com/moment@2.29.4/min/moment.min.js"></script>
-  <script src="https://unpkg.com/moment@2.29.4/locale/zh-cn.js"></script>
-  
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playball">
+  <script src="https://cdn.staticfile.org/axios/0.27.2/axios.min.js"></script>
+  <script src="https://cdn.staticfile.org/moment.js/2.29.4/moment.min.js"></script>
+  <script src="https://cdn.staticfile.org/moment.js/2.29.4/locale/zh-cn.js"></script>
+
   {{include 'script/base'}}
   {{block 'head-lazy'}}{{/block}}
 </body>

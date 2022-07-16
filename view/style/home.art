@@ -1,27 +1,26 @@
 <style>
-  :root {
-    --header-height: 800px;
+  .header-title {
+    font-family: "Malapropism";
   }
 
-  @media screen and (max-width:600px) {
-    :root {
-      --header-height: 100vh;
-    }
+  .header-subtitle {
+    font-family: "LiDeBiao-Xing330aa58b0fd2483a";
   }
 
   #action-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
     position: absolute;
-    padding: 4px 8px;
-    right: 12px;
+    right: max(12px, calc(50vw - 488px));
     bottom: 12px;
     user-select: none;
     cursor: pointer;
-    /* border: 1px solid var(--color-white); */
-    /* border-radius: 2px; */
+    font-size: 0.8rem;
   }
 
   #action {
-    border-bottom: 1px solid var(--color-latent);
+    border-bottom: 1px solid var(--color-border);
     overflow: hidden;
     padding: 0 20px;
     height: 0;
@@ -35,11 +34,16 @@
     border-width: 1px;
   }
 
-  #action .action-upper {
+  .action-upper,
+  .action-lower {
     display: flex;
     justify-content: flex-end;
-    align-items: center;
     gap: 4px;
+  }
+
+  .action-lower {
+    padding: 20px;
+    padding-top: 0;
   }
 
   .action-upper button {
@@ -69,7 +73,7 @@
   }
 
   .article-item:not(:last-child) {
-    border-bottom: 1px dashed var(--color-latent);
+    border-bottom: 1px dashed var(--color-border);
   }
 
   .article-item-title {
@@ -101,5 +105,14 @@
     display: flex;
     align-items: center;
     gap: 4px;
+  }
+
+  .tag {
+    color: inherit;
+  }
+
+  .tag:hover {
+    color: inherit;
+    text-decoration: underline;
   }
 </style>

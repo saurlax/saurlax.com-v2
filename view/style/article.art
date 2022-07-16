@@ -60,7 +60,7 @@
 
   #floating-menu-like span {
     color: var(--color-white);
-    background-color: #212121bb;
+    background-color: #212121;
     position: absolute;
     right: 120%;
     padding: 2px 4px;
@@ -72,7 +72,7 @@
   }
 
   #floating-menu-like:hover span {
-    opacity: 1;
+    opacity: 0.8;
   }
 
   .article {
@@ -92,23 +92,44 @@
   }
 
   .comments-title {
-    margin: 12px 0;
-    color: var(--text);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #comments-form-switch {
+    color: var(--color-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  #comments-form-switch.hide {
+    display: none;
+  }
+
+  .comments-title div {
     font-size: 1.2rem;
     font-weight: bold;
   }
 
-  .comments-title::after {
-    content: " »";
-  }
-
-  .comments-form {
+  #comments-form {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    height: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
   }
 
-  .comments-form div {
+  #comments-form.show {
+    height: 141px;
+    margin-bottom: 12px;
+  }
+
+  #comments-form div {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -125,17 +146,18 @@
   }
 
   .comments-item {
-    padding: 12px 8px;
+    padding: 14px 8px;
   }
 
   .comments-item:not(:first-child) {
-    border-top: 1px dashed var(--color-latent);
+    border-top: 1px dashed var(--color-border);
   }
 
   .comments-item-info {
     display: flex;
     align-items: baseline;
     gap: 4px;
+    font-size: 0.8rem;
   }
 
   .comments-item-author {
@@ -144,12 +166,11 @@
   }
 
   .comments-item-date {
-    font-size: 0.8rem;
     color: var(--text-dashed);
   }
 
   .comments-item-content {
-    margin-left: 20px;
+    margin-left: 1em;
   }
 
   .comments-end {
