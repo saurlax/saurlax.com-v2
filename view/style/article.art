@@ -75,11 +75,6 @@
     opacity: 0.8;
   }
 
-  .article {
-    padding: 20px;
-    word-break: break-all;
-  }
-
   .article img {
     display: block;
     margin: auto;

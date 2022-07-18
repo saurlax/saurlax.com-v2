@@ -1,0 +1,44 @@
+<style>
+  .manage-article {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .manage-article-pair {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .manage-article-pair div:first-child {
+    margin-top: 5px;
+    display: inline-flex;
+    align-items: center;
+    width: 100px;
+  }
+
+  .manage-article-pair>input,
+  .manage-article-pair>textarea {
+    flex-grow: 1;
+  }
+
+  textarea {
+    resize: none;
+    height: 600px;
+  }
+
+  #preview {
+    flex-grow: 1;
+    padding: 4px 8px;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    height: 30px;
+    overflow: auto;
+    transition: all 0.3s ease;
+  }
+
+  #preview.show {
+    height: 600px;
+  }
+</style>

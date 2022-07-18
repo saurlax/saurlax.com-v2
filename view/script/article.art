@@ -1,15 +1,15 @@
 <script>
   const floatingMenuLikeElement = document.getElementById('floating-menu-like');
   const likedList = localStorage.getItem('likedList');
-  let liked = likedList && likedList.includes('{{@$data._id}}');
+  let liked = likedList && likedList.includes('{{$data._id.toString()}}');
   if (!liked) {
     floatingMenuLikeElement.addEventListener('click', () => {
       if (!liked) {
         liked = true;
         floatingMenuLikeElement.classList.add('liked');
         document.querySelectorAll('.var-likes').forEach(element => { element.innerText++ });
-        localStorage.setItem('likedList', (likedList ?? '') + '|{{@$data._id}}|');
-        axios.put('/api/article', { action: 'like', id: '{{@$data._id}}' });
+        localStorage.setItem('likedList', (likedList ?? '') + '|{{$data._id.toString()}}|');
+        axios.put('/api/article', { action: 'like', id: '{{$data._id.toString()}}' });
       }
     });
   } else {
@@ -33,7 +33,7 @@
       email: commentsFormEmailElement.value,
       content: commentsFormContentElement.value
     }
-    const res = await axios.put('/api/article', { action: 'commit', id: '{{@$data._id}}', data });
+    const res = await axios.put('/api/article', { action: 'commit', id: '{{$data._id.toString()}}', data });
     if (res.data.error) {
       alert(res.data.error);
     } else {

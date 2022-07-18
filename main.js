@@ -1,8 +1,10 @@
 const fs = require('fs');
 const os = require('os');
 const Koa = require('koa');
+const mount = require('koa-mount');
 const static = require('koa-static');
 const Router = require('koa-router');
+const auth = require('koa-basic-auth');
 const bodyparser = require('koa-bodyparser');
 const render = require('koa-art-template');
 const dotenv = require('dotenv');
@@ -52,7 +54,7 @@ function executeOnDirectory(path, action, prefix) {
   }
 }
 
-const countPerPage = 10;
+const countPerPage = parseInt(process.env.COUNT_PRE_PAGE ?? 10);
 
 const apiRouter = new Router();
 const pageRouter = new Router();
@@ -103,6 +105,14 @@ executeOnDirectory('./view', (path, name, prefix) => {
           return article;
         })
         break;
+      case '/manage/:id':
+        try {
+          data.article = await Article.findById(ctx.params.id);
+        } catch {
+          next();
+          return;
+        }
+        break;
     }
     ctx.render(`./${prefix.slice(6)}/${name}`, data)
   });
@@ -119,6 +129,7 @@ executeOnDirectory('./api', (path, name, prefix) => {
 
 app.use(static('public'));
 app.use(new bodyparser());
+app.use(mount('/manage', auth({ name: process.env.NAME, pass: process.env.PASS })));
 app.use(apiRouter.routes()).use(apiRouter.allowedMethods());
 app.use(pageRouter.routes()).use(pageRouter.allowedMethods());
 app.use(ctx => {

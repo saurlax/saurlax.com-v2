@@ -37,12 +37,12 @@
       <button class="disabled">下一页</button>
       {{/if}}
     </div>
-    <div class="result">共找到{{count}}篇文章，当前展示第{{@page + 1}}/{{Math.ceil(count / countPerPage)}}页</div>
+    <div class="result">共找到{{count}}篇文章，当前展示第{{page + 1}}/{{Math.ceil(count / countPerPage)}}页</div>
   </div>
   <div id="article-list">
     {{each articles}}
     <div class="article-item">
-      <a class="article-item-title" href="/article/{{@$value._id}}">{{$value.title}}</a>
+      <a class="article-item-title" href="/article/{{$value._id.toString()}}">{{$value.title}}</a>
       <div class="article-item-abstract">{{$value.content}}</div>
       <div class="article-item-info">
         <span>
@@ -76,7 +76,7 @@
           </svg>
           <span>
             {{each $value.tags}}
-            <a class="tag" href="/tags/{{$value}}">{{$value}}</a>
+            <a class="tag" href="/?wd={{$value}}">{{$value}}</a>
             {{/each}}
           </span>
         </span>

@@ -1,10 +1,10 @@
 const Article = require('../model/Article');
 
-const amountPerPage = 10;
+const countPerPage = parseInt(process.env.COUNT_PRE_PAGE ?? 10);
 
 module.exports = {
   get: async ctx => {
-    res = await Article.find({ show: true }).sort({ '_id': -1 }).skip(amountPerPage * (ctx.query.page ?? 0)).limit(amountPerPage);
+    res = await Article.find({ show: true }).sort({ '_id': -1 }).skip(countPerPage * (ctx.query.page ?? 0)).limit(countPerPage);
     ctx.body = res.map(article => {
       article.content = article.content.slice(0, 30) + '...';
       return article;

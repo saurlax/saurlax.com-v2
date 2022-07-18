@@ -2,6 +2,7 @@
 
 {{block 'head'}}
 <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.0/katex.min.css">
+{{include '../style/theme'}}
 {{include '../style/article'}}
 <title>{{article.title}} - Saurlax</title>
 {{/block}}
@@ -34,7 +35,7 @@
 </div>
 <div class="article-tags">
   {{each article.tags}}
-  <a href="/tags/{{$value}}">{{$value}}</a>
+  <a href="/?wd={{$value}}">{{$value}}</a>
   {{/each}}
 </div>
 {{/block}}

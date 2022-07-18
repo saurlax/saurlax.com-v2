@@ -1,0 +1,38 @@
+{{extend '../component/layout'}}
+
+{{block 'head'}}
+{{include '../style/theme'}}
+{{include '../style/manage-article'}}
+<title>[编辑] {{article.title}} - Saurlax</title>
+{{/block}}
+
+{{block 'head-lazy'}}
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.1.0/katex.min.css">
+<script src="https://cdn.staticfile.org/marked/4.0.18/marked.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.1.0/katex.min.js"></script>
+{{include '../script/manage-article'}}
+{{/block}}
+
+{{block 'header'}}
+<div class="header-title">[编辑] {{article.title}}</div>
+<div class="header-subtitle">ID: {{article._id.toString()}}</div>
+{{/block}}
+
+{{block 'content'}}
+<div class="content">
+  <div class="manage-article">
+    <div class="manage-article-pair">
+      <div>标题</div>
+      <input id="title" value="{{article.title}}">
+    </div>
+    <div class="manage-article-pair">
+      <div>正文</div>
+      <textarea id="content">{{article.content}}</textarea>
+    </div>
+    <div class="manage-article-pair">
+      <div>预览<input id="preview-switch" type="checkbox"></div>
+      <div id="preview" class="article"></div>
+    </div>
+  </div>
+</div>
+{{/block}}
