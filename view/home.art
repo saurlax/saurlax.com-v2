@@ -2,7 +2,7 @@
 
 {{block 'head'}}
 {{include 'style/home'}}
-<title>首页 - Saurlax</title>
+<title>{{(wd && wd != '') ? `“${wd}”的搜索结果` : '首页'}} - Saurlax</title>
 {{/block}}
 {{block 'head-lazy'}}
 <link rel='stylesheet' href='https://cdn.repository.webfont.com/webfonts/nomal/149562/37509/62d219fef629d813acb2284f.css'>
@@ -23,7 +23,7 @@
 
 {{block 'content'}}
 <div class="content">
-  <div id="action">
+  <div id="action" {{@(wd && wd!='' ) ? 'class="show"' : '' }}>
     <div class="action-upper">
       <input id="action-search" value="{{wd}}" placeholder="按下回车键发起搜索" />
       {{if page > 0}}

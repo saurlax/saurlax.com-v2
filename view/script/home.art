@@ -1,7 +1,7 @@
 <script>
   const actionElement = document.getElementById('action');
   const actionSwitchElement = document.getElementById('action-switch');
-  let showAction = false;
+  let showAction = actionElement.className.includes('show');
   actionSwitchElement.addEventListener('click', () => {
     if (showAction) {
       actionElement.classList.remove('show');
