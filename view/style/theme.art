@@ -226,7 +226,7 @@
 }
 */
   /* basic 样式采用一般的引言，具有左边框、左缩进 */
-  blockquote {
+  .article blockquote {
     font-style: normal;
     font-family: var(--quote-font), var(--base-Latin-font), var(--base-Chinese-font), -apple-system, serif;
     font-size: var(--quote-font-size);
@@ -237,50 +237,51 @@
     margin-left: 20px;
   }
 
-  hr {
+  .article hr {
     border-top: solid 0.7px #eee;
   }
 
-  img {
-    /* 避免图片在导出时被断开 */
-    page-break-inside: avoid;
+  .article img {
+    display: block;
+    margin: auto;
+    max-width: 100%;
   }
 
   /* ============ 多级列表样式 ============ */
-  ul {
+  .article ul {
     /* 无序列表第一级：实心圆点 */
     list-style: disc;
   }
 
-  ul ul {
+  .article ul ul {
     /*list-style: circle;*/
     /* 请勿删除“–”后的空格, 他们对缩进有一定影响, 下同 */
     list-style: "–　 ";
     /*left: -0.8rem;*/
   }
 
-  ul ul ul {
+  .article ul ul ul {
     /* 无序列表第三极：小圈 */
     list-style: "◦　";
     left: 0.1rem;
   }
 
-  ol {
+  .article ol {
     /* 有序列表第一级：数字 */
     list-style: decimal;
   }
 
-  ol ol {
+  .article ol ol {
     counter-reset: liist;
     list-style: none;
   }
 
-  ol ol li {
+  .article ol ol li {
     counter-increment: liist;
     position: relative;
   }
 
-  ol ol li::before {
+  .article ol ol li::before {
     /* 有序列表第二级：括号加小写字母 */
     content: "(" counter(liist, lower-alpha) ")　　";
     position: absolute;
@@ -288,18 +289,18 @@
     left: -2.4rem;
   }
 
-  ol ol ol {
+  .article ol ol ol {
     counter-reset: liiist;
     list-style: none;
     margin: 0;
   }
 
-  ol ol ol li {
+  .article ol ol ol li {
     counter-increment: liiist;
     position: relative;
   }
 
-  ol ol ol li::before {
+  .article ol ol ol li::before {
     /* 有序列表第三级：小写罗马数字 */
     content: counter(liiist, lower-roman) ".　　";
     align-self: flex-end;
@@ -313,24 +314,24 @@
     text-align: right;
   }
 
-  li {
+  .article li {
     position: relative;
   }
 
   /* ============ 多级列表样式END ============ */
   /* 行内代码 */
-  code {
+  .article code {
     font-family: var(--code-font), var(--ui-font), monospace;
   }
 
-  h1 code,
-  h2 code,
-  h3 code,
-  h4 code,
-  h5 code,
-  h6 code,
-  p code,
-  li code {
+  .article h1 code,
+  .article h2 code,
+  .article h3 code,
+  .article h4 code,
+  .article h5 code,
+  .articleh6 code,
+  .articlep code,
+  .article li code {
     color: #3c70c6;
     background-color: #fefefe;
     /* 阴影 */

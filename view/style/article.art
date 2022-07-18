@@ -75,12 +75,6 @@
     opacity: 0.8;
   }
 
-  .article img {
-    display: block;
-    margin: auto;
-    max-width: 100%;
-  }
-
   .comments {
     border-top: 1px solid var(--color-border);
     padding: 20px;

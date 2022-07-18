@@ -16,6 +16,7 @@
     display: inline-flex;
     align-items: center;
     width: 100px;
+    flex-shrink: 0;
   }
 
   .manage-article-pair>input,

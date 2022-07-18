@@ -7,9 +7,9 @@
 {{/block}}
 
 {{block 'head-lazy'}}
-<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.1.0/katex.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.0/katex.min.css">
 <script src="https://cdn.staticfile.org/marked/4.0.18/marked.min.js"></script>
-<script src="https://cdn.staticfile.org/KaTeX/0.1.0/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.0/katex.min.js"></script>
 {{include '../script/manage-article'}}
 {{/block}}
 
@@ -27,7 +27,7 @@
     </div>
     <div class="manage-article-pair">
       <div>正文</div>
-      <textarea id="content">{{article.content}}</textarea>
+      <textarea id="content">{{@article.content}}</textarea>
     </div>
     <div class="manage-article-pair">
       <div>预览<input id="preview-switch" type="checkbox"></div>

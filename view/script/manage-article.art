@@ -1,16 +1,14 @@
 <script>
-  let showPreview = false;
   const previewElement = document.getElementById('preview');
   const previewSwitchElement = document.getElementById('preview-switch');
   previewSwitchElement.addEventListener('click', () => {
-    if (showPreview) {
-      previewElement.innerHTML = '';
-      previewElement.classList.remove('show');
-    } else {
-      previewElement.innerHTML = render(contentInput.value);
+    if (previewSwitchElement.checked) {
       previewElement.classList.add('show');
+      previewElement.innerHTML = render(contentInput.value);
+    } else {
+      previewElement.classList.remove('show');
+      previewElement.innerHTML = '';
     }
-    showPreview = !showPreview;
   })
 
   const titleInput = document.getElementById('title');
@@ -27,7 +25,7 @@
   }
 
   contentInput.addEventListener('input', () => {
-    if (showPreview) {
+    if (previewSwitchElement.checked) {
       previewElement.innerHTML = render(contentInput.value);
     }
   })
