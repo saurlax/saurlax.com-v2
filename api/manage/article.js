@@ -37,10 +37,19 @@ module.exports = {
       ctx.body = e.message;
     }
   },
+  post: async ctx => {
+    const body = ctx.request.body;
+    try {
+      await Article.create({ ...body, date: new Date() });
+      ctx.status = 200;
+    } catch (e) {
+      ctx.body = e.message;
+    }
+  },
   delete: async ctx => {
     const body = ctx.request.body;
     try {
-      const res = await Article.deleteOne({ _id: body.id });
+      await Article.deleteOne({ _id: body.id });
       ctx.status = 200;
     } catch (e) {
       ctx.body = e.message;
