@@ -20,10 +20,9 @@ const networks = os.networkInterfaces();
 dotenv.config();
 moment.locale('zh-CN');
 mongoose.connect(process.env.DATABASE_URI).then(() => { console.log('Database connected.') });
+const authString = process.env.AUTH.split(':');
+const account = { name: authString[0], pass: authString[1] };
 
-katex.renderToString(`
-\\sum_{i=1}^n i^3 = \\left( \\frac{n(g(n)+1)} 2 \\right) ^2
-`)
 render(app, {
   root: 'view',
   debug: process.env.DEBUG == 'true',
@@ -92,7 +91,7 @@ executeOnDirectory('./view', (path, name, prefix) => {
         }
         let page = ctx.query.page;
         page = (page && page >= 0) ? parseInt(page) : 0;
-        let res = await Article.find(factor).sort({ _id: -1 }).skip(countPerPage * page).limit(countPerPage);
+        let res = await Article.find(factor).sort({ date: -1 }).skip(countPerPage * page).limit(countPerPage);
         data.count = await Article.find(factor).count();
         data.countPerPage = countPerPage;
         data.page = page;
@@ -108,6 +107,10 @@ executeOnDirectory('./view', (path, name, prefix) => {
       case '/manage/:id':
         try {
           data.article = await Article.findById(ctx.params.id);
+          if (!data.article) {
+            next();
+            return;
+          }
         } catch {
           next();
           return;
@@ -129,7 +132,8 @@ executeOnDirectory('./api', (path, name, prefix) => {
 
 app.use(static('public'));
 app.use(new bodyparser());
-app.use(mount('/manage', auth({ name: process.env.NAME, pass: process.env.PASS })));
+app.use(mount('/manage', auth(account)));
+app.use(mount('/api/manage', auth(account)));
 app.use(apiRouter.routes()).use(apiRouter.allowedMethods());
 app.use(pageRouter.routes()).use(pageRouter.allowedMethods());
 app.use(ctx => {

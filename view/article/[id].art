@@ -66,8 +66,8 @@
       {{each article.comments}}
       <div class="comments-item">
         <div class="comments-item-info">
-          <span class="comments-item-author">{{$value.author}}</span>
-          <span class="comments-item-date">{{moment($value.date).fromNow()}}</span>
+          <span class="comments-item-author">{{($value.author && $value.author != '') ? $value.author : '匿名用户'}}</span>
+          <span class="comments-item-date">{{moment($value.date).calendar()}}</span>
         </div>
         <div class="comments-item-content">{{$value.content}}</div>
       </div>

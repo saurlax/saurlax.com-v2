@@ -24,9 +24,13 @@
     scroll-behavior: smooth;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width:600px) {
     :root {
       --header-height: 300px;
+    }
+
+    .header-title {
+      font-size: 1.8rem !important;
     }
   }
 
@@ -38,6 +42,7 @@
   a {
     color: var(--color-primary);
     text-decoration: none;
+    cursor: pointer;
   }
 
   a:hover {
@@ -121,6 +126,7 @@
     height: var(--header-height);
     color: var(--color-white);
     text-align: center;
+    word-break: break-all;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -133,13 +139,8 @@
   }
 
   .header-title {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     font-weight: bold;
-    word-break: break-all;
-  }
-
-  .header-subtitle {
-    word-break: break-all;
   }
 
   #header-background {

@@ -1,32 +1,7 @@
 <script>
   const previewElement = document.getElementById('preview');
-  const previewSwitchElement = document.getElementById('preview-switch');
-  previewSwitchElement.addEventListener('click', () => {
-    if (previewSwitchElement.checked) {
-      previewElement.classList.add('show');
-      previewElement.innerHTML = render(contentInput.value);
-    } else {
-      previewElement.classList.remove('show');
-      previewElement.innerHTML = '';
-    }
-  })
 
   const titleInput = document.getElementById('title');
   const contentInput = document.getElementById('content');
 
-  function render(text) {
-    text.match(/\$\$[^\$]*\$\$/gm)?.forEach(match => {
-      text = text.replace(match, katex.renderToString(match.slice(2, -2), { throwOnError: false }));
-    })
-    text.match(/```latex[^`]*```/gims)?.forEach(match => {
-      text = text.replace(match, katex.renderToString(match.slice(8, -3), { throwOnError: false, displayMode: true }));
-    })
-    return marked.parse(text);
-  }
-
-  contentInput.addEventListener('input', () => {
-    if (previewSwitchElement.checked) {
-      previewElement.innerHTML = render(contentInput.value);
-    }
-  })
 </script>

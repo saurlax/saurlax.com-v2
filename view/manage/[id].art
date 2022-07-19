@@ -21,17 +21,49 @@
 {{block 'content'}}
 <div class="content">
   <div class="manage-article">
-    <div class="manage-article-pair">
-      <div>标题</div>
+    <div>
+      <span>数据</span>
+      <div>
+        <span>{{article.watches}}浏览</span>
+        <span>{{article.likes}}点赞</span>
+        <span>{{article.comments.filter(comment=>{return comment.show}).length}}/{{article.comments.length}}评论</span>
+      </div>
+    </div>
+    <div>
+      <span>标题</span>
       <input id="title" value="{{article.title}}">
     </div>
-    <div class="manage-article-pair">
-      <div>正文</div>
-      <textarea id="content">{{@article.content}}</textarea>
+    <div>
+      <span>内容</span>
+      <input class="switch" type="checkbox">
+      <textarea id="content">{{article.content}}</textarea>
     </div>
-    <div class="manage-article-pair">
-      <div>预览<input id="preview-switch" type="checkbox"></div>
-      <div id="preview" class="article"></div>
+    <div>
+      <span>标签</span>
+      <input placeholder="逗号分隔" value="{{article.tags.join(',')}}">
+    </div>
+    <div>
+      <span>评论</span>
+      <div>
+        {{each article.comments}}
+        <div class="comments-item">
+          <div class="comments-item-info">
+            <b>{{$value.author}}</b>
+            <span>{{moment($value.date).calendar()}}</span>
+            <span>[{{if $value.show}}<a>切换为不可见</a>{{else}}<a>切换为可见</a>{{/if}}<span>|</span><a>删除</a>]</span>
+          </div>
+          <div>{{$value.content}}</div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    <div>
+      <span>日期</span>
+      <input id="date" type="datetime-local" value="{{moment(article.date).format('yyyy-MM-DDThh:mm')}}">
+    </div>
+    <div>
+      <span>可见</span>
+      <input id="show" type="checkbox" checked="{{article.show}}">
     </div>
   </div>
 </div>

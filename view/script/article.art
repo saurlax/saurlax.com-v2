@@ -29,7 +29,7 @@
   const commentsFormSubmitElement = document.getElementById('comments-form-submit');
   commentsFormSubmitElement.addEventListener('click', async () => {
     const data = {
-      author: (commentsFormAuthorElement.value && commentsFormAuthorElement.value != '') ? commentsFormAuthorElement.value : '匿名用户',
+      author: commentsFormAuthorElement.value,
       email: commentsFormEmailElement.value,
       content: commentsFormContentElement.value
     }

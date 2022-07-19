@@ -6,40 +6,54 @@
     gap: 4px;
   }
 
-  .manage-article-pair {
+  .manage-article>div {
+    position: relative;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
   }
 
-  .manage-article-pair div:first-child {
-    margin-top: 5px;
+  .manage-article>div>span {
     display: inline-flex;
     align-items: center;
-    width: 100px;
+    width: 80px;
     flex-shrink: 0;
   }
 
-  .manage-article-pair>input,
-  .manage-article-pair>textarea {
+  .switch {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .manage-article>div>input,
+  .manage-article>div>textarea,
+  .manage-article>div>div {
     flex-grow: 1;
   }
 
   textarea {
     resize: none;
-    height: 600px;
-  }
-
-  #preview {
-    flex-grow: 1;
-    padding: 4px 8px;
-    border: 1px solid var(--color-border);
-    border-radius: 2px;
-    height: 30px;
-    overflow: auto;
+    height: 100px;
     transition: all 0.3s ease;
   }
 
-  #preview.show {
+  .switch:checked+textarea {
     height: 600px;
   }
+
+  @media screen and (max-width:600px) {
+    .manage-article>div>span {
+      width: 40px;
+    }
+  }
+
+  .comments-item:not(:last-child) {
+    border-bottom: 1px dashed var(--color-border);
+  }
+
+  .comments-item-info {
+    font-size: 0.8rem;
+  }
+
+  .comments-item-action {}
 </style>

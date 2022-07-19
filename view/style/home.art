@@ -1,6 +1,7 @@
 <style>
   .header-title {
     font-family: "Malapropism";
+    font-size: 2.4rem;
   }
 
   .header-subtitle {

@@ -1,86 +1,7 @@
 <style>
-  :root {
-    /* == 字体设置 == */
-    /* 基准字体 */
-    /* 备选：Times, "Times New Roman" */
-    --base-Latin-font: "Latin Modern Roman", "Latin Modern Roman 10";
-    --base-Chinese-font: "宋体-简", "华文宋体", "Noto Serif CJK SC";
-    --base-font-size: 9.5pt;
-    /* 引言字体 */
-    --quote-font: "Latin Modern Roman", "Latin Modern Roman 10", Times,
-      "Times New Roman", "华文仿宋";
-    /* 这里字体用了10pt,比正文字体稍大 */
-    --quote-font-size: 10pt;
-    /* 代码字体（代码中的中文会调用 ui-font） */
-    --code-font: "Latin Modern Mono", "Latin Modern Mono 10", "Courier New";
-    /* 侧边栏字体 */
-    --ui-font: "阿里巴巴普惠体 2.0", "微软雅黑";
-    /* source mode 字体 */
-    /* 默认调用 code-font 和 ui-font */
-    --sourceMode-font: "SF Mono", "阿里巴巴普惠体 2.0", "微软雅黑";
-    /* 目录字体 */
-    /* 默认调用 base-font */
-    --toc-font: "";
-    /* 默认调用 base-font-size */
-    --toc-font-size: "";
-    /* 表格字体 */
-    /* 默认调用 heading-font */
-    --table-title-font: "";
-    /* 默认调用 base-font */
-    --table-font: "";
-    /* 标题字体（总设置） */
-    --heading-Latin-font: var(--base-Latin-font);
-    --heading-Chinese-font: "华文黑体";
-    /* 标题字体分别设置 */
-    /* 大标题（h1）字体 */
-    --title-Chinese-font: "华文黑体";
-    --title-font-size: 18pt;
-    /* h2字体 */
-    --h2-Chinese-font: "华文黑体";
-    --h2-font-size: 14pt;
-    /* h3字体 */
-    --h3-Chinese-font: "华文黑体";
-    --h3-font-size: 12pt;
-    /* h4字体 */
-    --h4-Chinese-font: "华文楷体";
-    --h4-font-size: 10pt;
-    /* h5字体 */
-    --h5-Chinese-font: "华文仿宋";
-    --h5-font-size: 10pt;
-    /* h6字体 */
-    --h6-Chinese-font: "华文仿宋";
-    --h6-font-size: 9.5pt;
-    /* 粗体样式设置 */
-    /* 加粗风格时使用的字重；400等同于 normal，700等同于 bold，900等同于 heavy */
-    --strong-weight: 900;
-    /* 基础行距 */
-    --base-line-height: 16pt;
-    /* == 页面设置 == */
-    /* 打印页边距 */
-    --set-margin: 1.8cm 2cm 1.2cm 2cm !important;
-    /* == 控制设置 == */
-    /* 目录中是否显示一级标题 */
-    --toc-show-title: none;
-    /* == 颜色设置 == */
-    /* 超链接颜色 */
-    --link-color-light: #2E67D3;
-    --link-color-dark: #8bb1f9;
-  }
-
-  /* 正文区基本属性 */
   .article {
-    font-family: var(--base-Latin-font), var(--base-Chinese-font), serif;
-    font-size: var(--base-font-size);
-    /* A4标准宽度 */
-    background-color: white;
-    /* column-count: 2;
-    column-gap: 25px;
-    column-width: 8cm; 
-    display: inline-block; */
-    /* 这里可以试分栏的，但确实不适合实现 */
+    background-color: var(--color-white);
     counter-reset: h2 0 h3 0 h4 0 h5 0 h6 0;
-
-
     padding: 20px;
     word-break: break-all;
   }
@@ -89,102 +10,25 @@
     text-align: left;
   }
 
-  .article a {
-    color: var(--link-color-light);
-  }
-
-  .article h1,
-  .article h2,
-  .article h3,
-  .article h4,
-  .article h5,
-  .article h6 {
-    font-weight: bold;
-    /* 标题字体 */
-    font-family: var(--heading-Latin-font), var(--heading-Chinese-font), sans-serif;
-    page-break-after: avoid !important;
-  }
-
   .article h1 {
-    font-family: var(--heading-Latin-font), var(--title-Chinese-font), sans-serif;
     text-align: center;
     column-span: all;
-    font-size: var(--title-font-size);
-  }
-
-  .article h2 {
-    font-family: var(--heading-Latin-font), var(--h2-Chinese-font), sans-serif;
-    font-size: var(--h2-font-size);
-  }
-
-  .article h3 {
-    font-family: var(--heading-Latin-font), var(--h3-Chinese-font), sans-serif;
-    font-size: var(--h3-font-size);
-    line-height: var(--h3-font-size);
-  }
-
-  .article h4 {
-    font-family: var(--heading-Latin-font), var(--h4-Chinese-font), sans-serif;
-    font-size: var(--h4-font-size);
-    line-height: var(--h4-font-size);
-  }
-
-  .article h5 {
-    font-family: var(--heading-Latin-font), var(--h5-Chinese-font), sans-serif;
-    font-size: var(--h5-font-size);
-    line-height: var(--h5-font-size);
-  }
-
-  .article h6 {
-    font-family: var(--heading-Latin-font), var(--h6-Chinese-font), sans-serif;
-    font-size: var(--h6-font-size);
-    /* 没有写错，为了避免行距太小才这么写 */
-    line-height: var(--h5-font-size);
   }
 
   .article table {
-    /* 三线表第一条线宽度 */
-    border-top: 1.2pt solid;
-    /* 三线表第二条线宽度 */
-    border-bottom: 1.2pt solid;
-    font-family: var(--table-font), var(--base-Latin-font), var(--base-Chinese-font), serif;
-    /* font-size: var(--base-font-size); */
+    border: 1px solid var(--color-border);
     text-align: center;
     page-break-inside: avoid;
-    border-spacing: 6px;
-    /* 自动布局表格宽度，如果有时内容太紧建议直接加空格吧，我自己看不惯和页面等宽的大表格 */
+    border-spacing: 0;
+    border-collapse: collapse;
     width: auto;
-    /* 使表格默认居中；虽然这个代码不好，但好像没别的实现办法 */
     margin: 0 auto;
   }
 
-  .article table td {
-    padding: 2px;
-  }
-
-  .article table tr {
-    padding: 2px;
-  }
-
-  .article th {
-    padding: 0px 6px;
-  }
-
-  .article thead {
-    /* 表格标题（首行）样式 */
-    /* 三线表表头的线 */
-    border-bottom: 0.5pt solid;
-    font-family: var(--table-title-font), var(--heading-Latin-font), var(--heading-Chinese-font), serif !important;
-    /* font-size: var(--base-font-size); */
-    font-weight: var(--strong-weight);
-  }
-
-  .article .CodeMirror-wrap {
-    padding: 10px;
-  }
-
-  .article .CodeMirror-code pre {
-    font-family: var(--code-font), var(--ui-font), monospace;
+  .article th,
+  .article td {
+    padding: 4px 6px;
+    border: 1px solid var(--color-border);
   }
 
   .article h1 {
@@ -207,38 +51,17 @@
     counter-reset: h6;
   }
 
-  /*
-.article figure:after{
-  counter-increment: tableHead;
-  content: "表" counter(tableHead) " ";
-  text-align:center;
-  width:100%;
-  display:inline-block;
-}*/
-  /* 图片，导出PDF时暂时无法显示 */
-  /*
-.article .md-image:after{
-  counter-increment: imgHead;
-  content: "图" counter(imgHead) " ";
-  text-align:center;
-  width:100%;
-  display:inline-block;
-}
-*/
-  /* basic 样式采用一般的引言，具有左边框、左缩进 */
   .article blockquote {
-    font-style: normal;
-    font-family: var(--quote-font), var(--base-Latin-font), var(--base-Chinese-font), -apple-system, serif;
-    font-size: var(--quote-font-size);
-    /* 文字离左边框的距离 */
+    font-style: italic;
+    color: var(--text-dashed);
+    border-left: 4px solid var(--color-border);
     padding-left: 16px;
     padding-right: 20pt;
-    /* 左边框离页面边的距离 */
     margin-left: 20px;
   }
 
   .article hr {
-    border-top: solid 0.7px #eee;
+    border-top: solid 0.7px #eeeeee;
   }
 
   .article img {
@@ -247,27 +70,20 @@
     max-width: 100%;
   }
 
-  /* ============ 多级列表样式 ============ */
   .article ul {
-    /* 无序列表第一级：实心圆点 */
     list-style: disc;
   }
 
   .article ul ul {
-    /*list-style: circle;*/
-    /* 请勿删除“–”后的空格, 他们对缩进有一定影响, 下同 */
     list-style: "–　 ";
-    /*left: -0.8rem;*/
   }
 
   .article ul ul ul {
-    /* 无序列表第三极：小圈 */
     list-style: "◦　";
     left: 0.1rem;
   }
 
   .article ol {
-    /* 有序列表第一级：数字 */
     list-style: decimal;
   }
 
@@ -282,7 +98,6 @@
   }
 
   .article ol ol li::before {
-    /* 有序列表第二级：括号加小写字母 */
     content: "(" counter(liist, lower-alpha) ")　　";
     position: absolute;
     margin-right: 2rem;
@@ -301,15 +116,10 @@
   }
 
   .article ol ol ol li::before {
-    /* 有序列表第三级：小写罗马数字 */
     content: counter(liiist, lower-roman) ".　　";
     align-self: flex-end;
     position: absolute;
     left: -3rem;
-    /* -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;*/
-    /* 为了让项目编号是重新用句点对齐而不是左对齐 */
     width: 4.2rem;
     text-align: right;
   }
@@ -318,8 +128,6 @@
     position: relative;
   }
 
-  /* ============ 多级列表样式END ============ */
-  /* 行内代码 */
   .article code {
     font-family: var(--code-font), var(--ui-font), monospace;
   }
@@ -334,14 +142,14 @@
   .article li code {
     color: #3c70c6;
     background-color: #fefefe;
-    /* 阴影 */
+
     box-shadow: 0 0 1px 1px #c8d3df;
     font-family: var(--code-font), var(--ui-font), monospace;
     box-sizing: border-box;
     border-right: 0px;
     margin: 0 2px 0 2px;
     padding: 0 2px 0 2px;
-    /* 圆角 */
+
     border-radius: 2px 2px 2px 2px;
   }
 </style>
