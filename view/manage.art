@@ -10,30 +10,18 @@
 {{/block}}
 
 {{block 'header'}}
-<div class="header-title">管理</div>
+<div class="header-title">管理面板</div>
+<div class="header-subtitle">─=≡Σ(((つ•̀ω•́)つ</div>
 {{/block}}
 
 {{block 'content'}}
 <div class="content">
-  <div class="manage-title">文章管理</div>
-  <div>
-    <div class="editor-upper">
-      <div>
-        <button>«</button>
-        <select>
-          <option>123</option>
-          <option>123</option>
-          <option>123</option>
-        </select>
-        <button>»</button>
-      </div>
-      <button id="editor-switch">展开</button>
+  <div class="manage">
+    <div class="manage-title">网站数据</div>
+    <div>
+      
     </div>
-    <div id="editor">
-      <div><textarea placeholder="开始创作吧(^_−)☆"></textarea></div>
-      <div class="preview">`12</div>
-    </div>
+    <div class="manage-title">文章数据</div>
   </div>
-  <div id="article-info">文章数据</div>
 </div>
 {{/block}}

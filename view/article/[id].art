@@ -12,13 +12,13 @@
 
 {{block 'header'}}
 <div class="header-title">{{article.title}}</div>
-<div class="article-info">
+<div class="header-subtitle">
   <span>
     <svg viewBox="64 64 896 896" focusable="false" data-icon="clock-circle" width="1em" height="1em" fill="currentColor" aria-hidden="true">
       <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
       <path d="M686.7 638.6L544.1 535.5V288c0-4.4-3.6-8-8-8H488c-4.4 0-8 3.6-8 8v275.4c0 2.6 1.2 5 3.3 6.5l165.4 120.6c3.6 2.6 8.6 1.8 11.2-1.7l28.6-39c2.6-3.7 1.8-8.7-1.8-11.2z"></path>
     </svg>
-    <span>{{moment(article.date).format('yyyy/MM/DD hh:mm')}}</span>
+    <span>{{moment(article.date).format('yyyy/M/D hh:mm')}}</span>
   </span>
   <span>
     <svg viewBox="64 64 896 896" focusable="false" data-icon="eye" width="1em" height="1em" fill="currentColor" aria-hidden="true">
@@ -53,7 +53,7 @@
       <textarea id="comments-form-content" placeholder="1.如果您有任何疑问或好的点子，欢迎在此发表留言！&#10;2.若“昵称”为空将显示为“匿名用户”。您可选择填写“邮箱”，以便我通过邮件回复您的留言，您的邮箱不会被公开；&#10;3.请注意您的言行，非法或恶意内容将不被允许；&#10;4.您的留言将在审核通过后公开。"></textarea>
     </div>
     <div class="comments-title">
-      <div>留言列表 »</div>
+      <div>留言列表({{article.comments.filter(comment=>{return comment.show}).length}}) »</div>
       <span id="comments-form-switch">
         <svg viewBox="64 64 896 896" focusable="false" data-icon="plus" width="1em" height="1em" fill="currentColor" aria-hidden="true">
           <path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"></path>
@@ -66,10 +66,10 @@
       {{each article.comments}}
       <div class="comments-item">
         <div class="comments-item-info">
-          <span class="comments-item-author">{{($value.author && $value.author != '') ? $value.author : '匿名用户'}}</span>
+          <span class="comments-item-author">{{($value.author != '') ? $value.author : '匿名用户'}}</span>
           <span class="comments-item-date">{{moment($value.date).calendar()}}</span>
         </div>
-        <div class="comments-item-content">{{$value.content}}</div>
+        <div>{{$value.content}}</div>
       </div>
       {{/each}}
       <div class="comments-end">没有更多啦(｀・ω・´)</div>

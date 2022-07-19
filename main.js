@@ -2,7 +2,7 @@ const fs = require('fs');
 const os = require('os');
 const Koa = require('koa');
 const mount = require('koa-mount');
-const static = require('koa-static');
+const serve = require('koa-static');
 const Router = require('koa-router');
 const auth = require('koa-basic-auth');
 const bodyparser = require('koa-bodyparser');
@@ -65,15 +65,17 @@ executeOnDirectory('./view', (path, name, prefix) => {
     switch (url) {
       case '/article/:id':
         try {
-          let res = await Article.findById(ctx.params.id);
-          if (!res.show) {
+          let article = await Article.findById(ctx.params.id);
+          if (!article || !article.show) {
             next();
             return;
           }
-          res.comments = res.comments.filter(comment => {
+          article.watches++;
+          article.save();
+          article.comments = article.comments.filter(comment => {
             return comment.show;
           })
-          data.article = res;
+          data.article = article;
         } catch {
           next();
           return;
@@ -91,12 +93,12 @@ executeOnDirectory('./view', (path, name, prefix) => {
         }
         let page = ctx.query.page;
         page = (page && page >= 0) ? parseInt(page) : 0;
-        let res = await Article.find(factor).sort({ date: -1 }).skip(countPerPage * page).limit(countPerPage);
+        let articles = await Article.find(factor).sort({ date: -1 }).skip(countPerPage * page).limit(countPerPage);
         data.count = await Article.find(factor).count();
         data.countPerPage = countPerPage;
         data.page = page;
         data.wd = wd;
-        data.articles = res.map(article => {
+        data.articles = articles.map(article => {
           article.content = article.content.slice(0, 30) + '...';
           article.comments = article.comments.filter(comment => {
             return comment.show;
@@ -126,17 +128,29 @@ executeOnDirectory('./api', (path, name, prefix) => {
   const url = `${prefix}/${name.split('.')[0]}`;
   for (key in api) {
     apiRouter[key](url, api[key]);
+    console.log(`API loaded: \x1B[36m${url}\x1B[39m [${key.toLocaleUpperCase()}]`);
   }
-  console.log(`API loaded: \x1B[36m${url}\x1B[39m`);
 })
 
-app.use(static('public'));
-app.use(new bodyparser());
+app.use(serve('public'));
+app.use(new bodyparser({ strict: false }));
+app.use(async (ctx, next) => {
+  ctx.sendStatus = function (code) {
+    ctx.status = code;
+    return;
+  }
+  if (parseInt(process.env.PROXY_COUNT ?? 0) == 0) {
+    ctx.originIp = ctx.request.ip.replace('::ffff:', '');
+  } else {
+    ctx.originIp = ctx.get('X-Forwarded-For').split(', ').splice(-process.env.PROXY_COUNT, 1)[0];
+  }
+  await next();
+})
 app.use(mount('/manage', auth(account)));
 app.use(mount('/api/manage', auth(account)));
 app.use(apiRouter.routes()).use(apiRouter.allowedMethods());
 app.use(pageRouter.routes()).use(pageRouter.allowedMethods());
-app.use(ctx => {
+app.use(async ctx => {
   if (ctx.path.includes('/api')) return;
   ctx.status = 404;
   ctx.render('404.art');

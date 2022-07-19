@@ -3,8 +3,7 @@
     --header-background: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.2008php.com%2F2017_Website_appreciate%2F2017-10-31%2F20171031203134.jpg&refer=http%3A%2F%2Fwww.2008php.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660036409&t=2e7ccac1ed1fb3edd12bdf6e31ff1985");
   }
 
-  .article-info {
-    margin: 8px 0;
+  .header-subtitle {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -13,10 +12,14 @@
     filter: drop-shadow(0 0 4px var(--color-shadow));
   }
 
-  .article-info span {
+  .header-subtitle span {
     display: flex;
     align-items: center;
     gap: 4px;
+  }
+
+  .article-tags {
+    margin-top: 8px;
   }
 
   .article-tags a {
@@ -123,7 +126,7 @@
   }
 
   .comments-item {
-    padding: 14px 8px;
+    padding: 8px;
   }
 
   .comments-item:not(:first-child) {
@@ -144,10 +147,6 @@
 
   .comments-item-date {
     color: var(--text-dashed);
-  }
-
-  .comments-item-content {
-    margin-left: 1em;
   }
 
   .comments-end {

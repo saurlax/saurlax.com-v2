@@ -1,7 +1,70 @@
 <script>
-  const previewElement = document.getElementById('preview');
-
   const titleInput = document.getElementById('title');
   const contentInput = document.getElementById('content');
+  const tagsInput = document.getElementById('tags');
+  const dateInput = document.getElementById('date');
+  const showInput = document.getElementById('show');
+  const saveButton = document.getElementById('save');
+  saveButton.addEventListener('click', async () => {
+    if (confirm('确定要保存修改吗？')) {
+      const res = await axios.put('/api/manage/article', {
+        action: 'update',
+        id: '{{$data._id.toString()}}',
+        data: {
+          title: titleInput.value,
+          content: contentInput.value,
+          tags: tagsInput.value.split(',').filter(tag => {
+            return tag != '';
+          }),
+          date: new Date(dateInput.value),
+          show: showInput.checked
+        }
+      });
+      alert(res.data);
+      if (res.data == 'OK') location.reload();
+    }
+  })
+  const deleteButton = document.getElementById('delete');
+  deleteButton.addEventListener('click', async () => {
+    if (confirm('确定要删除此文章（{{$data.title}}）吗？') && prompt('若要删除此文章，请输入文章标题（{{$data.title}}）：') == '{{$data.title}}') {
+      const res = await axios.delete('/api/manage/article', { data: { id: '{{$data._id.toString()}}' } });
+      alert(res.data);
+      if (res.data == 'OK') location.pathname = '/manage';
+    }
+  })
 
+  async function hideComment(e, cid) {
+    const info = e.parentElement.parentElement;
+    if (confirm(`确定要隐藏“${info.querySelector('.comments-item-author').innerText}”于${info.querySelector('.comments-item-date').innerText}发表的评论吗？`)) {
+      const res = await axios.put('/api/manage/article', { action: 'verifyComment', id: '{{$data._id.toString()}}', data: { cid, show: false } });
+      alert(res.data);
+      if (res.data == 'OK') location.reload();
+    }
+  }
+
+  async function showComment(e, cid) {
+    const info = e.parentElement.parentElement;
+    if (confirm(`确定要展示“${info.querySelector('.comments-item-author').innerText}”于${info.querySelector('.comments-item-date').innerText}发表的评论吗？`)) {
+      const res = await axios.put('/api/manage/article', { action: 'verifyComment', id: '{{$data._id.toString()}}', data: { cid, show: true } });
+      alert(res.data);
+      if (res.data == 'OK') location.reload();
+    }
+  }
+
+  async function deleteComment(e, cid) {
+    const info = e.parentElement.parentElement;
+    if (confirm(`确定要删除“${info.querySelector('.comments-item-author').innerText}”于${info.querySelector('.comments-item-date').innerText}发表的评论吗？`)) {
+      const res = await axios.put('/api/manage/article', { action: 'deleteComment', id: '{{$data._id.toString()}}', data: { cid } });
+      alert(res.data);
+      if (res.data == 'OK') location.reload();
+    }
+  }
+
+  async function deleteCommentIP(e, ip) {
+    if (confirm(`确定要删除此文章下${ip}的所有评论吗？`)) {
+      const res = await axios.put('/api/manage/article', { action: 'deleteComment', id: '{{$data._id.toString()}}', data: { ip } });
+      alert(res.data);
+      if (res.data == 'OK') location.reload();
+    }
+  }
 </script>

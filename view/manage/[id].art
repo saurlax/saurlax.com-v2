@@ -8,26 +8,24 @@
 
 {{block 'head-lazy'}}
 <link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.0/katex.min.css">
-<script src="https://cdn.staticfile.org/marked/4.0.18/marked.min.js"></script>
-<script src="https://cdn.staticfile.org/KaTeX/0.16.0/katex.min.js"></script>
-{{include '../script/manage-article'}}
+{{include '../script/manage-article' article}}
 {{/block}}
 
 {{block 'header'}}
 <div class="header-title">[编辑] {{article.title}}</div>
-<div class="header-subtitle">ID: {{article._id.toString()}}</div>
+<div class="header-subtitle">
+  <span>{{article.watches}}浏览</span>
+  <span>{{article.likes}}点赞</span>
+  <span>{{article.comments.filter(comment=>{return comment.show}).length}}/{{article.comments.length}}留言</span>
+</div>
 {{/block}}
 
 {{block 'content'}}
 <div class="content">
   <div class="manage-article">
-    <div>
-      <span>数据</span>
-      <div>
-        <span>{{article.watches}}浏览</span>
-        <span>{{article.likes}}点赞</span>
-        <span>{{article.comments.filter(comment=>{return comment.show}).length}}/{{article.comments.length}}评论</span>
-      </div>
+    <div class="manage-article-start">
+      <a href="/manage">« 返回管理面板</a>
+      <a href="/article/{{article._id.toString()}}">查看文章</a>
     </div>
     <div>
       <span>标题</span>
@@ -40,22 +38,7 @@
     </div>
     <div>
       <span>标签</span>
-      <input placeholder="逗号分隔" value="{{article.tags.join(',')}}">
-    </div>
-    <div>
-      <span>评论</span>
-      <div>
-        {{each article.comments}}
-        <div class="comments-item">
-          <div class="comments-item-info">
-            <b>{{$value.author}}</b>
-            <span>{{moment($value.date).calendar()}}</span>
-            <span>[{{if $value.show}}<a>切换为不可见</a>{{else}}<a>切换为可见</a>{{/if}}<span>|</span><a>删除</a>]</span>
-          </div>
-          <div>{{$value.content}}</div>
-        </div>
-        {{/each}}
-      </div>
+      <input id="tags" placeholder="逗号分隔" value="{{article.tags.join(',')}}">
     </div>
     <div>
       <span>日期</span>
@@ -64,6 +47,29 @@
     <div>
       <span>可见</span>
       <input id="show" type="checkbox" checked="{{article.show}}">
+    </div>
+    <div class="manage-article-end">
+      <button id="delete" class="danger">删除</button>
+      <button id="save">保存</button>
+    </div>
+  </div>
+  <div class="comments">
+    <div class="comments-title">留言列表({{article.comments.filter(comment=>{return comment.show}).length}}/{{article.comments.length}}) »</div>
+    <div>
+      {{each article.comments}}
+      <div class="comments-item">
+        <div class="comments-item-info">
+          <span class="comments-item-author">{{($value.author != '') ? $value.author : '匿名用户'}}</span>
+          <span class="comments-item-date">{{moment($value.date).calendar()}}</span>
+          <div class="comments-item-action">[{{if $value.show}}<a onclick="hideComment(this,'{{$value._id.toString()}}')">隐藏</a>{{else}}<a onclick="showComment(this,'{{$value._id.toString()}}')">展示</a>{{/if}}|<a onclick="deleteComment(this,'{{$value._id.toString()}}')">删除</a>|<a onclick="deleteCommentIP(this,'{{$value.ip}}')">删除IP</a>]</div>
+        </div>
+        <div class="comments-item-track">
+          <span>{{($value.email != '') ? $value.email : '未填写邮箱'}}</span>
+          <span class="comments-item-ip">{{$value.ip}}</span>
+        </div>
+        <div>{{$value.content}}</div>
+      </div>
+      {{/each}}
     </div>
   </div>
 </div>
