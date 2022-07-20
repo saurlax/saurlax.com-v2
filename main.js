@@ -12,6 +12,7 @@ const moment = require('moment');
 const mongoose = require('mongoose');
 const marked = require('marked');
 const katex = require('katex');
+const hljs = require('highlight.js');
 
 const Article = require('./model/Article');
 
@@ -22,20 +23,29 @@ moment.locale('zh-CN');
 mongoose.connect(process.env.DATABASE_URI).then(() => { console.log('Database connected.') });
 const authString = process.env.AUTH.split(':');
 const account = { name: authString[0], pass: authString[1] };
+marked.setOptions({
+  highlight: function (code, language) {
+    if (language) {
+      return hljs.highlight(code, { language }).value;
+    } else {
+      return hljs.highlightAuto(code).value;
+    }
+  }
+})
 
 render(app, {
   root: 'view',
   debug: process.env.DEBUG == 'true',
   imports: {
-    moment, marked, Math,
-    katex: (text) => {
+    moment, Math,
+    markdown: (text) => {
       text.match(/\$\$[^\$]*\$\$/gm)?.forEach(match => {
         text = text.replace(match, katex.renderToString(match.slice(2, -2), { throwOnError: false }));
       })
       text.match(/```latex[^`]*```/gims)?.forEach(match => {
         text = text.replace(match, katex.renderToString(match.slice(8, -3), { throwOnError: false, displayMode: true }));
       })
-      return text;
+      return marked.parse(text);
     }
   }
 })

@@ -31,4 +31,18 @@
   const floatingMenuHomeElement = document.getElementById('floating-menu-home');
   if (location.pathname == '/') floatingMenuHomeElement.style.display = 'none';
   floatingMenuHomeElement.addEventListener('click', () => { location.pathname = '/' });
+
+  let dark = localStorage.getItem('dark') == 'true';
+  if (dark) document.body.classList.add('dark');
+  const floatingMenuDarkElement = document.getElementById('floating-menu-dark');
+  floatingMenuDarkElement.addEventListener('click', () => {
+    if (dark) {
+      localStorage.setItem('dark', 'false');
+      document.body.classList.remove('dark');
+    } else {
+      localStorage.setItem('dark', 'true');
+      document.body.classList.add('dark');
+    }
+    dark = !dark;
+  })
 </script>

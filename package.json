@@ -7,6 +7,7 @@
     "art-template": "^4.13.2",
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
+    "highlight.js": "^11.6.0",
     "katex": "^0.16.0",
     "koa": "^2.13.4",
     "koa-art-template": "^1.1.1",

@@ -1,12 +1,13 @@
 {{extend '../component/layout'}}
 
 {{block 'head'}}
-<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.0/katex.min.css">
 {{include '../style/theme'}}
 {{include '../style/article'}}
 <title>{{article.title}} - Saurlax</title>
 {{/block}}
 {{block 'head-lazy'}}
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.0/katex.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/11.6.0/styles/github.min.css">
 {{include '../script/article' article}}
 {{/block}}
 
@@ -42,7 +43,7 @@
 
 {{block 'content'}}
 <div class="content">
-  <div class="article">{{@marked.parse(katex(article.content))}}</div>
+  <div class="article">{{@markdown(article.content)}}</div>
   <div class="comments">
     <div id="comments-form">
       <div>

@@ -34,8 +34,8 @@
       content: commentsFormContentElement.value
     }
     const res = await axios.put('/api/article', { action: 'commit', id: '{{$data._id.toString()}}', data });
-    if (res.data.error) {
-      alert(res.data.error);
+    if (res.data != 'OK') {
+      alert(res.data);
     } else {
       alert('您的留言已提交成功，审核通过后将会公开(*^▽^*)');
     }

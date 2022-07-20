@@ -34,7 +34,7 @@
   textarea {
     resize: none;
     height: 100px;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease, height 0.3s ease;
   }
 
   .switch:checked+textarea {

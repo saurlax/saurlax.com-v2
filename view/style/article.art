@@ -59,7 +59,6 @@
     border-radius: 2px;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.3s ease;
   }
 
   #floating-menu-like:hover span {

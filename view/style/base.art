@@ -1,10 +1,10 @@
 <style>
   :root {
     /* color */
-    --color-primary: #096088;
+    --color-primary: #1e7eaa;
     --color-primary-hover: #1274a1;
-    --color-primary-66: #217faa;
     --color-disabled: #bdbdbd;
+    --color-panel: #ffffff;
     --color-empty: #f3f3f3;
     --color-white: #ffffff;
     --color-dark: #212121;
@@ -13,6 +13,7 @@
     --color-border: #e2e2e2;
     --color-hr: #757575;
     --color-latent: #bdbdbd;
+    --color-hover: #828282;
     --color-shadow: #212121;
     --color-danger: #ff4d4f;
     --color-danger-hover: #ff7875;
@@ -21,9 +22,50 @@
     --header-height: 500px;
     --header-background: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2018-01-10%2F5a55b29e06143.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1660524290&t=37d86153a763b6f3afa143a1d1d6c827");
 
-    background-color: var(--color-empty);
     -webkit-tap-highlight-color: transparent;
     scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    color: var(--text);
+    background-color: var(--color-empty);
+    font-size: 14px;
+    text-size-adjust: 100%;
+    font-family: "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  body.dark {
+    --color-empty: #212121;
+    --text: #ffffff;
+    --text-dashed: #757575;
+    --color-border: #303030;
+    --color-panel: #131313;
+    --color-hover: #bdbdbd;
+    --color-latent: #828282;
+  }
+
+  body.dark img {
+    filter: brightness(80%);
+  }
+
+  body.dark header {
+    background-image: linear-gradient(#00000044, #00000044), var(--header-background);
+  }
+
+  ::-webkit-scrollbar {
+    background-color: var(--color-border);
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: var(--color-latent);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-hover);
   }
 
   @media screen and (max-width:600px) {
@@ -38,7 +80,7 @@
 
   ::selection {
     color: var(--color-white);
-    background-color: var(--color-primary-66);
+    background-color: var(--color-primary);
   }
 
   a {
@@ -64,9 +106,9 @@
     background-color: var(--color-primary);
     text-shadow: 0 -1px #0000001f;
     border-radius: 2px;
-    transition: background-color 0.3s ease;
     user-select: none;
     cursor: pointer;
+    transition: background-color 0.3s ease;
   }
 
   button:hover,
@@ -94,8 +136,10 @@
     padding: 4px 8px;
     border: 1px solid var(--color-border);
     border-radius: 2px;
-    transition: border-color 0.3s ease;
     font-family: inherit;
+    color: var(--text);
+    background-color: var(--color-panel);
+    transition: border-color 0.3s ease;
   }
 
   input:hover,
@@ -119,15 +163,6 @@
   select:hover,
   select:focus {
     border-color: var(--color-primary);
-  }
-
-  body {
-    margin: 0;
-    color: var(--text);
-    font-size: 14px;
-    text-size-adjust: 100%;
-    font-family: "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-
   }
 
   /* layout */
@@ -188,7 +223,7 @@
   .content {
     margin: auto;
     max-width: 1000px;
-    background-color: var(--color-white);
+    background-color: var(--color-panel);
     box-shadow: 0 0 4px var(--color-latent);
   }
 
@@ -244,6 +279,18 @@
 
   #floating-menu-to-edge.reverse svg {
     transform: rotate(180deg);
+  }
+
+  #floating-menu-dark .outline {
+    display: none;
+  }
+
+  body.dark #floating-menu-dark .outline {
+    display: initial;
+  }
+
+  body.dark #floating-menu-dark .filled {
+    display: none;
   }
 
   .tips {

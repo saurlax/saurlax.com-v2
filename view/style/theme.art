@@ -1,9 +1,11 @@
 <style>
   .article {
-    background-color: var(--color-white);
-    counter-reset: h2 0 h3 0 h4 0 h5 0 h6 0;
+    background-color: var(--color-panel);
     padding: 20px;
     word-break: break-all;
+    overflow: auto;
+
+    --font-code: "ui-monospace", "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", "monospace";
   }
 
   .article p {
@@ -31,26 +33,6 @@
     border: 1px solid var(--color-border);
   }
 
-  .article h1 {
-    counter-reset: h2;
-  }
-
-  .article h2 {
-    counter-reset: h3;
-  }
-
-  .article h3 {
-    counter-reset: h4;
-  }
-
-  .article h4 {
-    counter-reset: h5;
-  }
-
-  .article h5 {
-    counter-reset: h6;
-  }
-
   .article blockquote {
     font-style: italic;
     color: var(--text-dashed);
@@ -70,66 +52,8 @@
     max-width: 100%;
   }
 
-  .article ul {
-    list-style: disc;
-  }
-
-  .article ul ul {
-    list-style: "–　 ";
-  }
-
-  .article ul ul ul {
-    list-style: "◦　";
-    left: 0.1rem;
-  }
-
-  .article ol {
-    list-style: decimal;
-  }
-
-  .article ol ol {
-    counter-reset: liist;
-    list-style: none;
-  }
-
-  .article ol ol li {
-    counter-increment: liist;
-    position: relative;
-  }
-
-  .article ol ol li::before {
-    content: "(" counter(liist, lower-alpha) ")　　";
-    position: absolute;
-    margin-right: 2rem;
-    left: -2.4rem;
-  }
-
-  .article ol ol ol {
-    counter-reset: liiist;
-    list-style: none;
-    margin: 0;
-  }
-
-  .article ol ol ol li {
-    counter-increment: liiist;
-    position: relative;
-  }
-
-  .article ol ol ol li::before {
-    content: counter(liiist, lower-roman) ".　　";
-    align-self: flex-end;
-    position: absolute;
-    left: -3rem;
-    width: 4.2rem;
-    text-align: right;
-  }
-
-  .article li {
-    position: relative;
-  }
-
   .article code {
-    font-family: var(--code-font), var(--ui-font), monospace;
+    font-family: var(--font-code);
   }
 
   .article h1 code,
@@ -138,18 +62,20 @@
   .article h4 code,
   .article h5 code,
   .articleh6 code,
-  .articlep code,
+  .article p code,
   .article li code {
-    color: #3c70c6;
-    background-color: #fefefe;
-
-    box-shadow: 0 0 1px 1px #c8d3df;
-    font-family: var(--code-font), var(--ui-font), monospace;
-    box-sizing: border-box;
-    border-right: 0px;
+    background-color: #f6f8fa;
     margin: 0 2px 0 2px;
     padding: 0 2px 0 2px;
+    border-radius: 2px;
+  }
 
-    border-radius: 2px 2px 2px 2px;
+  .article pre {
+    font-size: 0.8rem;
+    padding: 16px;
+    overflow: auto;
+    border-radius: 6px;
+    font-family: var(--font-code);
+    background-color: #f6f8fa;
   }
 </style>
