@@ -1,2 +1,27 @@
 <script>
+  async function showComment(e, id, cid) {
+    const info = e.parentElement.parentElement;
+    if (confirm(`确定要展示“${info.querySelector('.comments-item-author').innerText}”于${info.querySelector('.comments-item-date').innerText}发表的评论吗？`)) {
+      const res = await axios.put('/api/manage/article', { action: 'verifyComment', id, data: { cid, show: true } });
+      alert(res.data);
+      if (res.data == 'OK') location.reload();
+    }
+  }
+
+  async function deleteComment(e, id, cid) {
+    const info = e.parentElement.parentElement;
+    if (confirm(`确定要删除“${info.querySelector('.comments-item-author').innerText}”于${info.querySelector('.comments-item-date').innerText}发表的评论吗？`)) {
+      const res = await axios.put('/api/manage/article', { action: 'deleteComment', id, data: { cid } });
+      alert(res.data);
+      if (res.data == 'OK') location.reload();
+    }
+  }
+
+  async function deleteCommentIP(e, id, ip) {
+    if (confirm(`确定要删除此文章下${ip}的所有评论吗？`)) {
+      const res = await axios.put('/api/manage/article', { action: 'deleteComment', id, data: { ip } });
+      alert(res.data);
+      if (res.data == 'OK') location.reload();
+    }
+  }
 </script>

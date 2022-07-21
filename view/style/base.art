@@ -1,8 +1,8 @@
 <style>
   :root {
     /* color */
-    --color-primary: #1e7eaa;
-    --color-primary-hover: #1274a1;
+    --color-primary: #157986;
+    --color-primary-hover: #2ea5b4;
     --color-disabled: #bdbdbd;
     --color-panel: #ffffff;
     --color-empty: #f3f3f3;
@@ -36,11 +36,11 @@
   }
 
   body.dark {
-    --color-empty: #212121;
+    --color-empty: #181818;
     --text: #ffffff;
     --text-dashed: #757575;
     --color-border: #303030;
-    --color-panel: #131313;
+    --color-panel: #212121;
     --color-hover: #bdbdbd;
     --color-latent: #828282;
   }

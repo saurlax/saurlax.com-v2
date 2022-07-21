@@ -10,4 +10,36 @@
     font-size: 1.2rem;
     font-weight: bold;
   }
+
+
+  .comments-item {
+    padding: 8px 0;
+  }
+
+  .comments-item:not(:last-child) {
+    border-bottom: 1px dashed var(--color-border);
+  }
+
+  .comments-item-info {
+    font-size: 0.8rem;
+  }
+
+  .comments-item-action {
+    float: right;
+  }
+
+  .comments-item-author {
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+
+  .comments-item-date {
+    color: var(--text-dashed)
+  }
+
+  .comments-item-track {
+    color: var(--text-dashed);
+    font-size: 0.8rem;
+    font-style: italic;
+  }
 </style>

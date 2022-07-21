@@ -37,6 +37,7 @@
     if (res.data != 'OK') {
       alert(res.data);
     } else {
+      commentsFormContentElement.value = '';
       alert('您的留言已提交成功，审核通过后将会公开(*^▽^*)');
     }
   })

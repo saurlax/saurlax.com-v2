@@ -128,6 +128,15 @@ executeOnDirectory('./view', (path, name, prefix) => {
           return;
         }
         break;
+      case '/manage':
+        const articlesCommentsNotVerify = await Article.aggregate([{ $match: { 'comments.show': false } }]);
+        let count = 0;
+        articlesCommentsNotVerify.forEach(article => {
+          count += article.comments.filter(comment => { return !comment.show }).length;
+        })
+        data.commentsNotVerifyCount = count;
+        data.articlesCommentsNotVerify = articlesCommentsNotVerify.splice(0, 10);
+        break;
     }
     ctx.render(`./${prefix.slice(6)}/${name}`, data)
   });

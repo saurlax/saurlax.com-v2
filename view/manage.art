@@ -19,9 +19,31 @@
   <div class="manage">
     <div class="manage-title">网站数据</div>
     <div>
-      
+
     </div>
     <div class="manage-title">文章数据</div>
+    <div>
+      <div>未处理留言({{commentsNotVerifyCount}})：</div>
+      <div>
+        {{each articlesCommentsNotVerify}}
+        {{set id = $value._id.toString()}}
+        {{each $value.comments.filter(comment=>{return !comment.show})}}
+        <div class="comments-item">
+          <div class="comments-item-info">
+            <span class="comments-item-author">{{($value.author != '') ? $value.author : '匿名用户'}}</span>
+            <span class="comments-item-date">{{moment($value.date).calendar()}}</span>
+            <div class="comments-item-action">[<a onclick="showComment(this,'{{id}}','{{$value._id.toString()}}')">展示</a>|<a onclick="deleteComment(this,'{{id}}','{{$value._id.toString()}}')">删除</a>|<a onclick="deleteCommentIP(this,'{{id}}','{{$value.ip}}')">删除IP</a>]</div>
+          </div>
+          <div class="comments-item-track">
+            <span>{{($value.email != '') ? $value.email : '未填写邮箱'}}</span>
+            <span class="comments-item-ip">{{$value.ip}}</span>
+          </div>
+          <div>{{$value.content}}</div>
+        </div>
+        {{/each}}
+        {{/each}}
+      </div>
+    </div>
   </div>
 </div>
 {{/block}}
