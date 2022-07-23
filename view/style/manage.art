@@ -22,6 +22,8 @@
 
   .comments-item-info {
     font-size: 0.8rem;
+    display: inline-flex;
+    gap: 4px;
   }
 
   .comments-item-action {
@@ -38,6 +40,8 @@
   }
 
   .comments-item-track {
+    display: flex;
+    gap: 4px;
     color: var(--text-dashed);
     font-size: 0.8rem;
     font-style: italic;
