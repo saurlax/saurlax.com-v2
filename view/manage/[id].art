@@ -65,7 +65,7 @@
         </div>
         <div class="comments-item-track">
           <span>{{($value.email != '') ? $value.email : '未填写邮箱'}}</span>
-          <span class="comments-item-ip">{{$value.ip}}</span>
+          <span>{{$value.ip}}</span>
         </div>
         <div>{{$value.content}}</div>
       </div>

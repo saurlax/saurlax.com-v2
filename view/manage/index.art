@@ -36,7 +36,8 @@
           <div class="comments-item-action">[<a onclick="showComment(this,'{{id}}','{{$value._id.toString()}}')">展示</a>|<a onclick="deleteComment(this,'{{id}}','{{$value._id.toString()}}')">删除</a>|<a onclick="deleteCommentIP(this,'{{id}}','{{$value.ip}}')">删除IP</a>]</div>
           <div class="comments-item-track">
             <span>{{($value.email != '') ? $value.email : '未填写邮箱'}}</span>
-            <span class="comments-item-ip">{{$value.ip}}</span>
+            <span>{{$value.ip}}</span>
+            <span></span>
           </div>
           <div>{{$value.content}}</div>
         </div>

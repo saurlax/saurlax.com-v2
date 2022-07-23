@@ -63,13 +63,24 @@ function executeOnDirectory(path, action, prefix) {
   }
 }
 
-const countPerPage = parseInt(process.env.COUNT_PRE_PAGE ?? 10);
+const articleCountPerPage = parseInt(process.env.ARTICLE_COUNT_PRE_PAGE ?? 10);
+const commentsCountPerManagePage = parseInt(process.env.COMMENTS_COUNT_PRE_MANAGE_PAGE ?? 20);
+
+const excludeDirectory = ['/style', '/script', '/component'];
 
 const apiRouter = new Router();
 const pageRouter = new Router();
 executeOnDirectory('./view', (path, name, prefix) => {
-  if (prefix.includes('/style') || prefix.includes('/script') || prefix.includes('/component')) return;
-  const url = `${prefix.split('/view')[1]}/${(name == 'home.art') ? '' : name.split('.')[0].replace(/\[(.+)\]/, ':$1')}`;
+  const urlPrefix = prefix.slice(5);
+  let urlName;
+  if (name == 'index.art') {
+    urlName = '';
+  } else {
+    urlName = name.split('.')[0].replace(/\[(.+)\]/, ':$1');
+  }
+  if (excludeDirectory.includes(urlPrefix)) return;
+  console.log(`./${prefix.slice(6)}/${name}`);
+  const url = `${urlPrefix}/${urlName}`;
   pageRouter.get(url, async (ctx, next) => {
     let data = {};
     switch (url) {
@@ -103,9 +114,9 @@ executeOnDirectory('./view', (path, name, prefix) => {
         }
         let page = ctx.query.page;
         page = (page && page >= 0) ? parseInt(page) : 0;
-        let articles = await Article.find(factor).sort({ date: -1 }).skip(countPerPage * page).limit(countPerPage);
+        let articles = await Article.find(factor).sort({ date: -1 }).skip(articleCountPerPage * page).limit(articleCountPerPage);
         data.count = await Article.find(factor).count();
-        data.countPerPage = countPerPage;
+        data.countPerPage = articleCountPerPage;
         data.page = page;
         data.wd = wd;
         data.articles = articles.map(article => {
@@ -135,7 +146,7 @@ executeOnDirectory('./view', (path, name, prefix) => {
           count += article.comments.filter(comment => { return !comment.show }).length;
         })
         data.commentsNotVerifyCount = count;
-        data.articlesCommentsNotVerify = articlesCommentsNotVerify.splice(0, 10);
+        data.articlesCommentsNotVerify = articlesCommentsNotVerify.splice(0, commentsCountPerManagePage);
         break;
     }
     ctx.render(`./${prefix.slice(6)}/${name}`, data)
