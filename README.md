@@ -1,6 +1,6 @@
-# saurlax.com v2.0.0
+# saurlax.com v2
 
-> This version has been deprecated, please check the latest version: [saurlax.com](https://github.com/saurlax/saurlax.com).
+> This version has been deprecated, please check the latest version: https://github.com/saurlax/saurlax.com.
 
 `saurlax.com` is my personal website project. It use `koa`, `art-template` and `mongodb`.
 
